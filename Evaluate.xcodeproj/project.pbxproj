@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		85347DAD49991B2F38A316C4 /* libPods-Evaluate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F10A0CDEEBCF3A19223BE48D /* libPods-Evaluate.a */; };
+		9318E5A61AB9CF5D008DB5B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9318E5A51AB9CF5D008DB5B6 /* AppDelegate.swift */; };
+		9318E5A81AB9CF5D008DB5B6 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9318E5A71AB9CF5D008DB5B6 /* CalculatorViewController.swift */; };
+		9318E5AB1AB9CF5D008DB5B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9318E5A91AB9CF5D008DB5B6 /* Main.storyboard */; };
+		9318E5AD1AB9CF5D008DB5B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9318E5AC1AB9CF5D008DB5B6 /* Images.xcassets */; };
+		9318E5B01AB9CF5D008DB5B6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9318E5AE1AB9CF5D008DB5B6 /* LaunchScreen.xib */; };
+		9318E5C61AB9D0DF008DB5B6 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9318E5C51AB9D0DF008DB5B6 /* iAd.framework */; };
+		933DB27A1AC26CDA0002B93B /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB2791AC26CDA0002B93B /* Convenience.swift */; };
+		933DB2801AC274C70002B93B /* LocalWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB27F1AC274C70002B93B /* LocalWebViewController.swift */; };
+		933DB2841AC277570002B93B /* Legal.html in Resources */ = {isa = PBXBuildFile; fileRef = 933DB2821AC277570002B93B /* Legal.html */; };
+		933E14621ACBB4CF00998EFD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E14611ACBB4CF00998EFD /* R.generated.swift */; };
+		93ABBB811AB9F0EF00ED2389 /* muParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB781AB9F0EE00ED2389 /* muParser.cpp */; };
+		93ABBB821AB9F0EF00ED2389 /* muParserBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB791AB9F0EE00ED2389 /* muParserBase.cpp */; };
+		93ABBB831AB9F0EF00ED2389 /* muParserBytecode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB7A1AB9F0EE00ED2389 /* muParserBytecode.cpp */; };
+		93ABBB841AB9F0EF00ED2389 /* muParserCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB7B1AB9F0EF00ED2389 /* muParserCallback.cpp */; };
+		93ABBB851AB9F0EF00ED2389 /* muParserDLL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB7C1AB9F0EF00ED2389 /* muParserDLL.cpp */; };
+		93ABBB861AB9F0EF00ED2389 /* muParserError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB7D1AB9F0EF00ED2389 /* muParserError.cpp */; };
+		93ABBB871AB9F0EF00ED2389 /* muParserInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB7E1AB9F0EF00ED2389 /* muParserInt.cpp */; };
+		93ABBB881AB9F0EF00ED2389 /* muParserTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB7F1AB9F0EF00ED2389 /* muParserTest.cpp */; };
+		93ABBB891AB9F0EF00ED2389 /* muParserTokenReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB801AB9F0EF00ED2389 /* muParserTokenReader.cpp */; };
+		93ABBB8C1AB9F17800ED2389 /* MuParserWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB8B1AB9F17800ED2389 /* MuParserWrapper.mm */; };
+		93ABBB8E1ABA0EB900ED2389 /* MuParserWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB8D1ABA0EB900ED2389 /* MuParserWrapper.swift */; };
+		93ABBB921ABA17A500ED2389 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB911ABA17A500ED2389 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		93ABBB941ABA185400ED2389 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93ABBB931ABA185400ED2389 /* libicucore.dylib */; };
+		93B1F8731AC28A9700367F23 /* SlideMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B1F8721AC28A9700367F23 /* SlideMenuButton.swift */; };
+		93D833791ACA450C00672DC0 /* SlideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D833781ACA450C00672DC0 /* SlideMenuTableViewController.swift */; };
+		93D8337B1ACA461400672DC0 /* Array+Enumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8337A1ACA461400672DC0 /* Array+Enumerable.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7214FAC7A583503185186B94 /* Pods-Evaluate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Evaluate.release.xcconfig"; path = "Pods/Target Support Files/Pods-Evaluate/Pods-Evaluate.release.xcconfig"; sourceTree = "<group>"; };
+		9318E5A01AB9CF5D008DB5B6 /* Evaluate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evaluate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9318E5A41AB9CF5D008DB5B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9318E5A51AB9CF5D008DB5B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9318E5A71AB9CF5D008DB5B6 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
+		9318E5AA1AB9CF5D008DB5B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9318E5AC1AB9CF5D008DB5B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9318E5AF1AB9CF5D008DB5B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9318E5C51AB9D0DF008DB5B6 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		933DB2791AC26CDA0002B93B /* Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
+		933DB27F1AC274C70002B93B /* LocalWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalWebViewController.swift; sourceTree = "<group>"; };
+		933DB2821AC277570002B93B /* Legal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Legal.html; sourceTree = "<group>"; };
+		933E14611ACBB4CF00998EFD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		93ABBB691AB9F0D700ED2389 /* muParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParser.h; path = Evaluate/muParser.h; sourceTree = "<group>"; };
+		93ABBB6A1AB9F0D700ED2389 /* muParserBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserBase.h; path = Evaluate/muParserBase.h; sourceTree = "<group>"; };
+		93ABBB6B1AB9F0D700ED2389 /* muParserBytecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserBytecode.h; path = Evaluate/muParserBytecode.h; sourceTree = "<group>"; };
+		93ABBB6C1AB9F0D700ED2389 /* muParserCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserCallback.h; path = Evaluate/muParserCallback.h; sourceTree = "<group>"; };
+		93ABBB6D1AB9F0D700ED2389 /* muParserDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserDef.h; path = Evaluate/muParserDef.h; sourceTree = "<group>"; };
+		93ABBB6E1AB9F0D700ED2389 /* muParserDLL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserDLL.h; path = Evaluate/muParserDLL.h; sourceTree = "<group>"; };
+		93ABBB6F1AB9F0D700ED2389 /* muParserError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserError.h; path = Evaluate/muParserError.h; sourceTree = "<group>"; };
+		93ABBB701AB9F0D700ED2389 /* muParserFixes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserFixes.h; path = Evaluate/muParserFixes.h; sourceTree = "<group>"; };
+		93ABBB711AB9F0D700ED2389 /* muParserInt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserInt.h; path = Evaluate/muParserInt.h; sourceTree = "<group>"; };
+		93ABBB721AB9F0D700ED2389 /* muParserStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserStack.h; path = Evaluate/muParserStack.h; sourceTree = "<group>"; };
+		93ABBB731AB9F0D700ED2389 /* muParserTemplateMagic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserTemplateMagic.h; path = Evaluate/muParserTemplateMagic.h; sourceTree = "<group>"; };
+		93ABBB741AB9F0D700ED2389 /* muParserTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserTest.h; path = Evaluate/muParserTest.h; sourceTree = "<group>"; };
+		93ABBB751AB9F0D700ED2389 /* muParserToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserToken.h; path = Evaluate/muParserToken.h; sourceTree = "<group>"; };
+		93ABBB761AB9F0D700ED2389 /* muParserTokenReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserTokenReader.h; path = Evaluate/muParserTokenReader.h; sourceTree = "<group>"; };
+		93ABBB771AB9F0EE00ED2389 /* Evaluate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Evaluate; sourceTree = SOURCE_ROOT; };
+		93ABBB781AB9F0EE00ED2389 /* muParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParser.cpp; path = Evaluate/muParser.cpp; sourceTree = "<group>"; };
+		93ABBB791AB9F0EE00ED2389 /* muParserBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserBase.cpp; path = Evaluate/muParserBase.cpp; sourceTree = "<group>"; };
+		93ABBB7A1AB9F0EE00ED2389 /* muParserBytecode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserBytecode.cpp; path = Evaluate/muParserBytecode.cpp; sourceTree = "<group>"; };
+		93ABBB7B1AB9F0EF00ED2389 /* muParserCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserCallback.cpp; path = Evaluate/muParserCallback.cpp; sourceTree = "<group>"; };
+		93ABBB7C1AB9F0EF00ED2389 /* muParserDLL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserDLL.cpp; path = Evaluate/muParserDLL.cpp; sourceTree = "<group>"; };
+		93ABBB7D1AB9F0EF00ED2389 /* muParserError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserError.cpp; path = Evaluate/muParserError.cpp; sourceTree = "<group>"; };
+		93ABBB7E1AB9F0EF00ED2389 /* muParserInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserInt.cpp; path = Evaluate/muParserInt.cpp; sourceTree = "<group>"; };
+		93ABBB7F1AB9F0EF00ED2389 /* muParserTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserTest.cpp; path = Evaluate/muParserTest.cpp; sourceTree = "<group>"; };
+		93ABBB801AB9F0EF00ED2389 /* muParserTokenReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserTokenReader.cpp; path = Evaluate/muParserTokenReader.cpp; sourceTree = "<group>"; };
+		93ABBB8A1AB9F17800ED2389 /* MuParserWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuParserWrapper.h; sourceTree = "<group>"; };
+		93ABBB8B1AB9F17800ED2389 /* MuParserWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MuParserWrapper.mm; sourceTree = "<group>"; };
+		93ABBB8D1ABA0EB900ED2389 /* MuParserWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MuParserWrapper.swift; sourceTree = "<group>"; };
+		93ABBB901ABA17A500ED2389 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = Evaluate/RegexKitLite.h; sourceTree = "<group>"; };
+		93ABBB911ABA17A500ED2389 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = Evaluate/RegexKitLite.m; sourceTree = "<group>"; };
+		93ABBB931ABA185400ED2389 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		93B1F8721AC28A9700367F23 /* SlideMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuButton.swift; sourceTree = "<group>"; };
+		93D833781ACA450C00672DC0 /* SlideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuTableViewController.swift; sourceTree = "<group>"; };
+		93D8337A1ACA461400672DC0 /* Array+Enumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Enumerable.swift"; sourceTree = "<group>"; };
+		DF4F880EFE04841AB4114D22 /* Pods-Evaluate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Evaluate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Evaluate/Pods-Evaluate.debug.xcconfig"; sourceTree = "<group>"; };
+		F10A0CDEEBCF3A19223BE48D /* libPods-Evaluate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Evaluate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9318E59D1AB9CF5D008DB5B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93ABBB941ABA185400ED2389 /* libicucore.dylib in Frameworks */,
+				9318E5C61AB9D0DF008DB5B6 /* iAd.framework in Frameworks */,
+				85347DAD49991B2F38A316C4 /* libPods-Evaluate.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9318E5971AB9CF5D008DB5B6 = {
+			isa = PBXGroup;
+			children = (
+				9318E5A21AB9CF5D008DB5B6 /* Evaluate */,
+				9318E5C71AB9D0F3008DB5B6 /* Libraries */,
+				9318E5A11AB9CF5D008DB5B6 /* Products */,
+				FDE0440497640CE54E692818 /* Pods */,
+				D73C3E236CED17BA74CB93EF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9318E5A11AB9CF5D008DB5B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9318E5A01AB9CF5D008DB5B6 /* Evaluate.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9318E5A21AB9CF5D008DB5B6 /* Evaluate */ = {
+			isa = PBXGroup;
+			children = (
+				9318E5A51AB9CF5D008DB5B6 /* AppDelegate.swift */,
+				9318E5A71AB9CF5D008DB5B6 /* CalculatorViewController.swift */,
+				933DB27F1AC274C70002B93B /* LocalWebViewController.swift */,
+				93B1F8721AC28A9700367F23 /* SlideMenuButton.swift */,
+				93D833781ACA450C00672DC0 /* SlideMenuTableViewController.swift */,
+				933DB2791AC26CDA0002B93B /* Convenience.swift */,
+				93D8337A1ACA461400672DC0 /* Array+Enumerable.swift */,
+				9318E5A91AB9CF5D008DB5B6 /* Main.storyboard */,
+				9318E5AC1AB9CF5D008DB5B6 /* Images.xcassets */,
+				9318E5AE1AB9CF5D008DB5B6 /* LaunchScreen.xib */,
+				93ABBB8A1AB9F17800ED2389 /* MuParserWrapper.h */,
+				93ABBB8B1AB9F17800ED2389 /* MuParserWrapper.mm */,
+				93ABBB8D1ABA0EB900ED2389 /* MuParserWrapper.swift */,
+				93ABBB771AB9F0EE00ED2389 /* Evaluate */,
+				933DB2851AC2775D0002B93B /* Resources */,
+				9318E5A31AB9CF5D008DB5B6 /* Supporting Files */,
+			);
+			path = Evaluate;
+			sourceTree = "<group>";
+		};
+		9318E5A31AB9CF5D008DB5B6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9318E5A41AB9CF5D008DB5B6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9318E5C71AB9D0F3008DB5B6 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				9318E5C51AB9D0DF008DB5B6 /* iAd.framework */,
+				93ABBB931ABA185400ED2389 /* libicucore.dylib */,
+				93ABBB681AB9F0C300ED2389 /* MuParser */,
+				93ABBB8F1ABA179B00ED2389 /* RegexKitLite */,
+				933E14611ACBB4CF00998EFD /* R.generated.swift */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		933DB2851AC2775D0002B93B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				933DB2861AC277680002B93B /* Markup */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		933DB2861AC277680002B93B /* Markup */ = {
+			isa = PBXGroup;
+			children = (
+				933DB2821AC277570002B93B /* Legal.html */,
+			);
+			name = Markup;
+			sourceTree = "<group>";
+		};
+		93ABBB681AB9F0C300ED2389 /* MuParser */ = {
+			isa = PBXGroup;
+			children = (
+				93ABBB691AB9F0D700ED2389 /* muParser.h */,
+				93ABBB6A1AB9F0D700ED2389 /* muParserBase.h */,
+				93ABBB6B1AB9F0D700ED2389 /* muParserBytecode.h */,
+				93ABBB6C1AB9F0D700ED2389 /* muParserCallback.h */,
+				93ABBB6D1AB9F0D700ED2389 /* muParserDef.h */,
+				93ABBB6E1AB9F0D700ED2389 /* muParserDLL.h */,
+				93ABBB6F1AB9F0D700ED2389 /* muParserError.h */,
+				93ABBB701AB9F0D700ED2389 /* muParserFixes.h */,
+				93ABBB711AB9F0D700ED2389 /* muParserInt.h */,
+				93ABBB721AB9F0D700ED2389 /* muParserStack.h */,
+				93ABBB731AB9F0D700ED2389 /* muParserTemplateMagic.h */,
+				93ABBB741AB9F0D700ED2389 /* muParserTest.h */,
+				93ABBB751AB9F0D700ED2389 /* muParserToken.h */,
+				93ABBB761AB9F0D700ED2389 /* muParserTokenReader.h */,
+				93ABBB781AB9F0EE00ED2389 /* muParser.cpp */,
+				93ABBB791AB9F0EE00ED2389 /* muParserBase.cpp */,
+				93ABBB7A1AB9F0EE00ED2389 /* muParserBytecode.cpp */,
+				93ABBB7B1AB9F0EF00ED2389 /* muParserCallback.cpp */,
+				93ABBB7C1AB9F0EF00ED2389 /* muParserDLL.cpp */,
+				93ABBB7D1AB9F0EF00ED2389 /* muParserError.cpp */,
+				93ABBB7E1AB9F0EF00ED2389 /* muParserInt.cpp */,
+				93ABBB7F1AB9F0EF00ED2389 /* muParserTest.cpp */,
+				93ABBB801AB9F0EF00ED2389 /* muParserTokenReader.cpp */,
+			);
+			name = MuParser;
+			sourceTree = "<group>";
+		};
+		93ABBB8F1ABA179B00ED2389 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				93ABBB901ABA17A500ED2389 /* RegexKitLite.h */,
+				93ABBB911ABA17A500ED2389 /* RegexKitLite.m */,
+			);
+			name = RegexKitLite;
+			sourceTree = "<group>";
+		};
+		D73C3E236CED17BA74CB93EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F10A0CDEEBCF3A19223BE48D /* libPods-Evaluate.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDE0440497640CE54E692818 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF4F880EFE04841AB4114D22 /* Pods-Evaluate.debug.xcconfig */,
+				7214FAC7A583503185186B94 /* Pods-Evaluate.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9318E59F1AB9CF5D008DB5B6 /* Evaluate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9318E5BF1AB9CF5D008DB5B6 /* Build configuration list for PBXNativeTarget "Evaluate" */;
+			buildPhases = (
+				FA012B5863F90DA0E57B5A4F /* Check Pods Manifest.lock */,
+				933E14601ACBB32A00998EFD /* ShellScript */,
+				9318E59C1AB9CF5D008DB5B6 /* Sources */,
+				9318E59D1AB9CF5D008DB5B6 /* Frameworks */,
+				9318E59E1AB9CF5D008DB5B6 /* Resources */,
+				1E03FAE08F1F7B8FAECCEE85 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Evaluate;
+			productName = Evaluate;
+			productReference = 9318E5A01AB9CF5D008DB5B6 /* Evaluate.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9318E5981AB9CF5D008DB5B6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Lithiumcube;
+				TargetAttributes = {
+					9318E59F1AB9CF5D008DB5B6 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = 9318E59B1AB9CF5D008DB5B6 /* Build configuration list for PBXProject "Evaluate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9318E5971AB9CF5D008DB5B6;
+			productRefGroup = 9318E5A11AB9CF5D008DB5B6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9318E59F1AB9CF5D008DB5B6 /* Evaluate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9318E59E1AB9CF5D008DB5B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				933DB2841AC277570002B93B /* Legal.html in Resources */,
+				9318E5AB1AB9CF5D008DB5B6 /* Main.storyboard in Resources */,
+				9318E5B01AB9CF5D008DB5B6 /* LaunchScreen.xib in Resources */,
+				9318E5AD1AB9CF5D008DB5B6 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E03FAE08F1F7B8FAECCEE85 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Evaluate/Pods-Evaluate-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		933E14601ACBB32A00998EFD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
+		};
+		FA012B5863F90DA0E57B5A4F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9318E59C1AB9CF5D008DB5B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93ABBB921ABA17A500ED2389 /* RegexKitLite.m in Sources */,
+				93D833791ACA450C00672DC0 /* SlideMenuTableViewController.swift in Sources */,
+				933DB27A1AC26CDA0002B93B /* Convenience.swift in Sources */,
+				93D8337B1ACA461400672DC0 /* Array+Enumerable.swift in Sources */,
+				93ABBB8C1AB9F17800ED2389 /* MuParserWrapper.mm in Sources */,
+				9318E5A81AB9CF5D008DB5B6 /* CalculatorViewController.swift in Sources */,
+				93ABBB831AB9F0EF00ED2389 /* muParserBytecode.cpp in Sources */,
+				93ABBB811AB9F0EF00ED2389 /* muParser.cpp in Sources */,
+				933E14621ACBB4CF00998EFD /* R.generated.swift in Sources */,
+				93ABBB861AB9F0EF00ED2389 /* muParserError.cpp in Sources */,
+				93B1F8731AC28A9700367F23 /* SlideMenuButton.swift in Sources */,
+				93ABBB841AB9F0EF00ED2389 /* muParserCallback.cpp in Sources */,
+				9318E5A61AB9CF5D008DB5B6 /* AppDelegate.swift in Sources */,
+				933DB2801AC274C70002B93B /* LocalWebViewController.swift in Sources */,
+				93ABBB871AB9F0EF00ED2389 /* muParserInt.cpp in Sources */,
+				93ABBB821AB9F0EF00ED2389 /* muParserBase.cpp in Sources */,
+				93ABBB881AB9F0EF00ED2389 /* muParserTest.cpp in Sources */,
+				93ABBB891AB9F0EF00ED2389 /* muParserTokenReader.cpp in Sources */,
+				93ABBB8E1ABA0EB900ED2389 /* MuParserWrapper.swift in Sources */,
+				93ABBB851AB9F0EF00ED2389 /* muParserDLL.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9318E5A91AB9CF5D008DB5B6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9318E5AA1AB9CF5D008DB5B6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9318E5AE1AB9CF5D008DB5B6 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9318E5AF1AB9CF5D008DB5B6 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9318E5BD1AB9CF5D008DB5B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9318E5BE1AB9CF5D008DB5B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9318E5C01AB9CF5D008DB5B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF4F880EFE04841AB4114D22 /* Pods-Evaluate.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = Evaluate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Evaluate/Evaluate-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9318E5C11AB9CF5D008DB5B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7214FAC7A583503185186B94 /* Pods-Evaluate.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = Evaluate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Evaluate/Evaluate-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9318E59B1AB9CF5D008DB5B6 /* Build configuration list for PBXProject "Evaluate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9318E5BD1AB9CF5D008DB5B6 /* Debug */,
+				9318E5BE1AB9CF5D008DB5B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9318E5BF1AB9CF5D008DB5B6 /* Build configuration list for PBXNativeTarget "Evaluate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9318E5C01AB9CF5D008DB5B6 /* Debug */,
+				9318E5C11AB9CF5D008DB5B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9318E5981AB9CF5D008DB5B6 /* Project object */;
+}
