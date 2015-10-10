@@ -29,11 +29,10 @@
 		93ABBB891AB9F0EF00ED2389 /* muParserTokenReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB801AB9F0EF00ED2389 /* muParserTokenReader.cpp */; };
 		93ABBB8C1AB9F17800ED2389 /* MuParserWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB8B1AB9F17800ED2389 /* MuParserWrapper.mm */; };
 		93ABBB8E1ABA0EB900ED2389 /* MuParserWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB8D1ABA0EB900ED2389 /* MuParserWrapper.swift */; };
-		93ABBB921ABA17A500ED2389 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB911ABA17A500ED2389 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		93ABBB941ABA185400ED2389 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93ABBB931ABA185400ED2389 /* libicucore.dylib */; };
+		93ACDE861BC85C0500E3E682 /* Enumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACDE851BC85C0500E3E682 /* Enumerable.swift */; settings = {ASSET_TAGS = (); }; };
 		93B1F8731AC28A9700367F23 /* SlideMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B1F8721AC28A9700367F23 /* SlideMenuButton.swift */; };
 		93D833791ACA450C00672DC0 /* SlideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D833781ACA450C00672DC0 /* SlideMenuTableViewController.swift */; };
-		93D8337B1ACA461400672DC0 /* Array+Enumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8337A1ACA461400672DC0 /* Array+Enumerable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,12 +76,10 @@
 		93ABBB8A1AB9F17800ED2389 /* MuParserWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuParserWrapper.h; sourceTree = "<group>"; };
 		93ABBB8B1AB9F17800ED2389 /* MuParserWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MuParserWrapper.mm; sourceTree = "<group>"; };
 		93ABBB8D1ABA0EB900ED2389 /* MuParserWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MuParserWrapper.swift; sourceTree = "<group>"; };
-		93ABBB901ABA17A500ED2389 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = Evaluate/RegexKitLite.h; sourceTree = "<group>"; };
-		93ABBB911ABA17A500ED2389 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = Evaluate/RegexKitLite.m; sourceTree = "<group>"; };
 		93ABBB931ABA185400ED2389 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		93ACDE851BC85C0500E3E682 /* Enumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enumerable.swift; path = ../../Enumerable/Enumerable/Enumerable.swift; sourceTree = "<group>"; };
 		93B1F8721AC28A9700367F23 /* SlideMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuButton.swift; sourceTree = "<group>"; };
 		93D833781ACA450C00672DC0 /* SlideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuTableViewController.swift; sourceTree = "<group>"; };
-		93D8337A1ACA461400672DC0 /* Array+Enumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Enumerable.swift"; sourceTree = "<group>"; };
 		DF4F880EFE04841AB4114D22 /* Pods-Evaluate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Evaluate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Evaluate/Pods-Evaluate.debug.xcconfig"; sourceTree = "<group>"; };
 		F10A0CDEEBCF3A19223BE48D /* libPods-Evaluate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Evaluate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -129,7 +126,7 @@
 				93B1F8721AC28A9700367F23 /* SlideMenuButton.swift */,
 				93D833781ACA450C00672DC0 /* SlideMenuTableViewController.swift */,
 				933DB2791AC26CDA0002B93B /* Convenience.swift */,
-				93D8337A1ACA461400672DC0 /* Array+Enumerable.swift */,
+				93ACDE851BC85C0500E3E682 /* Enumerable.swift */,
 				9318E5A91AB9CF5D008DB5B6 /* Main.storyboard */,
 				9318E5AC1AB9CF5D008DB5B6 /* Images.xcassets */,
 				9318E5AE1AB9CF5D008DB5B6 /* LaunchScreen.xib */,
@@ -157,7 +154,6 @@
 				9318E5C51AB9D0DF008DB5B6 /* iAd.framework */,
 				93ABBB931ABA185400ED2389 /* libicucore.dylib */,
 				93ABBB681AB9F0C300ED2389 /* MuParser */,
-				93ABBB8F1ABA179B00ED2389 /* RegexKitLite */,
 				933E14611ACBB4CF00998EFD /* R.generated.swift */,
 			);
 			name = Libraries;
@@ -209,15 +205,6 @@
 			name = MuParser;
 			sourceTree = "<group>";
 		};
-		93ABBB8F1ABA179B00ED2389 /* RegexKitLite */ = {
-			isa = PBXGroup;
-			children = (
-				93ABBB901ABA17A500ED2389 /* RegexKitLite.h */,
-				93ABBB911ABA17A500ED2389 /* RegexKitLite.m */,
-			);
-			name = RegexKitLite;
-			sourceTree = "<group>";
-		};
 		D73C3E236CED17BA74CB93EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,7 +251,9 @@
 		9318E5981AB9CF5D008DB5B6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Lithiumcube;
 				TargetAttributes = {
 					9318E59F1AB9CF5D008DB5B6 = {
@@ -355,10 +344,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93ABBB921ABA17A500ED2389 /* RegexKitLite.m in Sources */,
 				93D833791ACA450C00672DC0 /* SlideMenuTableViewController.swift in Sources */,
 				933DB27A1AC26CDA0002B93B /* Convenience.swift in Sources */,
-				93D8337B1ACA461400672DC0 /* Array+Enumerable.swift in Sources */,
 				93ABBB8C1AB9F17800ED2389 /* MuParserWrapper.mm in Sources */,
 				9318E5A81AB9CF5D008DB5B6 /* CalculatorViewController.swift in Sources */,
 				93ABBB831AB9F0EF00ED2389 /* muParserBytecode.cpp in Sources */,
@@ -375,6 +362,7 @@
 				93ABBB891AB9F0EF00ED2389 /* muParserTokenReader.cpp in Sources */,
 				93ABBB8E1ABA0EB900ED2389 /* MuParserWrapper.swift in Sources */,
 				93ABBB851AB9F0EF00ED2389 /* muParserDLL.cpp in Sources */,
+				93ACDE861BC85C0500E3E682 /* Enumerable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +409,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -436,7 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -474,7 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -488,8 +477,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Evaluate/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lithiumcube.$(PRODUCT_NAME:rfc1034identifier)-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Evaluate/Evaluate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -503,8 +493,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Evaluate/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lithiumcube.$(PRODUCT_NAME:rfc1034identifier)-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Evaluate/Evaluate-Bridging-Header.h";
 			};

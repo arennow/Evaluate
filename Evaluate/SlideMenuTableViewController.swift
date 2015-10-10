@@ -39,7 +39,7 @@ class SlideMenuTableViewController: UITableViewController {
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(SlideMenuTableViewController.cellIdentifier) as! UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(SlideMenuTableViewController.cellIdentifier)!
 		
 		if let cellConfig = cellConfigurations.objectOrNilAtIndex(indexPath.row) {
 			cell.textLabel!.text = cellConfig.title

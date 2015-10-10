@@ -10,11 +10,7 @@ import UIKit
 import iAd
 
 func +<K, V>(lhs: Dictionary<K, V>, rhs: Dictionary<K, V>) -> Dictionary<K, V> {
-	var outDict = Dictionary<K,V>()
-	
-	for (k, v) in lhs {
-		outDict[k] = v
-	}
+	var outDict = lhs
 	
 	for (k, v) in rhs {
 		outDict[k] = v
@@ -23,14 +19,18 @@ func +<K, V>(lhs: Dictionary<K, V>, rhs: Dictionary<K, V>) -> Dictionary<K, V> {
 	return outDict
 }
 
+postfix operator =! {}
+
 class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFieldDelegate {
 	@IBOutlet var inputTextField: UITextField!
 	@IBOutlet var outputTextScrollView: UIScrollView!
-	@IBOutlet var bannerViewTopMarginConstraint: NSLayoutConstraint!
 	@IBOutlet var bannerView: ADBannerView!
 	@IBOutlet var infoButton: SlideMenuButton!
+	@IBOutlet var bannerViewVisibleScrollViewLayoutConstraint: NSLayoutConstraint!
+			  var bannerViewInvisibleScrollViewLayoutConstraint: NSLayoutConstraint!
 	let muParserWrapper = MuParserWrapper()
 	var lastInput = String()
+	var adBannerVisible = true
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,7 +42,7 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		
 		let action = {
 			(str: String) -> Void in
-			println("You tapped \(str)")
+			print("You tapped \(str)")
 		}
 		
 		infoButton.menuController = SlideMenuTableViewController(cellConfigurations:
@@ -66,6 +66,60 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 				})
 			]
 		)
+		
+		bannerViewInvisibleScrollViewLayoutConstraint = NSLayoutConstraint(
+			item: outputTextScrollView,
+			attribute: .Top,
+			relatedBy: .Equal,
+			toItem: self.topLayoutGuide,
+			attribute: .Bottom,
+			multiplier: 1,
+			constant: 0)
+	}
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		setAdBannerVisible(false, animated: false)
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		inputTextField.becomeFirstResponder()
+	}
+	
+	override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+		
+		coordinator.animateAlongsideTransition({ (_) -> Void in
+			self.view.layoutIfNeeded()
+		}, completion: nil)
+	}
+	
+	func setAdBannerVisible(visible: Bool, animated: Bool) {
+		adBannerVisible = visible
+		
+		bannerViewVisibleScrollViewLayoutConstraint.active = false
+		bannerViewInvisibleScrollViewLayoutConstraint.active = false
+		
+		let animationCompletion: ((Bool) -> Void)?
+		
+		if adBannerVisible {
+			bannerView.hidden = false
+			bannerViewVisibleScrollViewLayoutConstraint.active = true
+			animationCompletion = nil
+		} else {
+			bannerViewInvisibleScrollViewLayoutConstraint.active = true
+			animationCompletion = {
+				_ in
+				self.bannerView.hidden = true
+			}
+		}
+		
+		if animated {
+			CalculatorViewController.animateConstraintChangesInView(outputTextScrollView, completion: animationCompletion)
+		}
 	}
 	
 	@IBAction func inputButtonPushed(sender: UIButton) {
@@ -73,7 +127,7 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 	}
 	
 	@IBAction func equalsButtonPushed() {
-		let typedExpression = inputTextField.text
+		let typedExpression = inputTextField.text!
 		
 		if typedExpression.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
 			lastInput = typedExpression
@@ -120,19 +174,12 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		return .LightContent
 	}
 	
-	override func shouldAutorotate() -> Bool {
-		return true
-	}
-	
 	func bannerViewDidLoadAd(banner: ADBannerView!) {
-		bannerViewTopMarginConstraint.constant = 0
-		CalculatorViewController.animateConstraintChangesInView(banner)
-		scrollToBottomOfScrollView()
+		setAdBannerVisible(true, animated: true)
 	}
 	
 	func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-		bannerViewTopMarginConstraint.constant = -banner.frame.size.height
-		CalculatorViewController.animateConstraintChangesInView(banner)
+		setAdBannerVisible(false, animated: true)
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -145,7 +192,7 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		func appendString(string: NSAttributedString) {
 			func sizeOfString(string: NSAttributedString) -> CGSize {
 				var rect = string.boundingRectWithSize(CGSize(width: outputTextScrollView.frame.size.width, height: 0),
-					options: .UsesLineFragmentOrigin | .UsesFontLeading,
+					options: [.UsesLineFragmentOrigin, .UsesFontLeading],
 					context: nil)
 				
 				rect.size.width = outputTextScrollView.frame.size.width - 10 // For the scroll bar and equal space on the other side
@@ -159,24 +206,25 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 			let label = UILabel(frame: CGRect(origin: CGPoint(x: 5 /* to counter the space for the scroll bar */, y: previousContentSize.height),
 				size: additionSize))
 			label.attributedText = string
+			label.autoresizingMask = .FlexibleWidth
 			
 			outputTextScrollView.addSubview(label)
 			outputTextScrollView.contentSize.height = previousContentSize.height+additionSize.height
 		}
 		
-		let basicAttributes: [NSObject : AnyObject] = [
+		let basicAttributes: [String : AnyObject] = [
 			NSForegroundColorAttributeName : UIColor.whiteColor(),
-			NSFontAttributeName : UIFont.systemFontOfSize(inputTextField.font.pointSize)
+			NSFontAttributeName : UIFont.systemFontOfSize(inputTextField.font!.pointSize)
 		]
 		
-		let leftAlignmentAttributes: [NSObject : AnyObject] = [
+		let leftAlignmentAttributes: [String : AnyObject] = [
 			NSParagraphStyleAttributeName : {let x = NSMutableParagraphStyle();x.alignment = .Left; return x}()
 		]
 		
-		let rightAlignmentAttributes: [NSObject: AnyObject] = [
+		let rightAlignmentAttributes: [String: AnyObject] = [
 			NSParagraphStyleAttributeName : {let x = NSMutableParagraphStyle();x.alignment = .Right; return x}()
 		]
-	
+		
 		let expressionAttributedString = NSAttributedString(string: expression, attributes: basicAttributes + leftAlignmentAttributes)
 		
 		let answerString = NSString(format: "%g", result) as String
@@ -193,10 +241,14 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		}
 	}
 	
-	private static func animateConstraintChangesInView(view: UIView) {
-		UIView.animateWithDuration(0.333) {
-			view.superview?.layoutIfNeeded()
-		}
+	private static func animateConstraintChangesInView(view: UIView, completion: ((Bool) -> Void)? = nil) {
+		UIView.animateWithDuration(0.333,
+			delay: 0,
+			options: .BeginFromCurrentState,
+			animations: {
+				view.superview?.layoutIfNeeded()
+			},
+			completion: completion)
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

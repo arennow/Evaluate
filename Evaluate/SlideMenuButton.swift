@@ -18,7 +18,7 @@ class SlideMenuButton : UIButton {
 		commonInitialization()
 	}
 	
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
 		commonInitialization()
@@ -50,7 +50,7 @@ class SlideMenuButton : UIButton {
 			appearMenu()
 			
 		case .Ended:
-			if let mc = menuController, let selectedIP = mc.tableView.indexPathForSelectedRow() {
+			if let mc = menuController, let selectedIP = mc.tableView.indexPathForSelectedRow {
 				mc.tableView.delegate?.tableView!(mc.tableView, didSelectRowAtIndexPath: selectedIP)
 			}
 			
@@ -62,7 +62,7 @@ class SlideMenuButton : UIButton {
 			return
 			
 		case .Possible:
-			println("\(__FUNCTION__): \(gesture.state.rawValue) happened. Odd.")
+			print("\(__FUNCTION__): \(gesture.state.rawValue) happened. Odd.")
 			return
 			
 		case .Changed:
@@ -76,7 +76,7 @@ class SlideMenuButton : UIButton {
 				let indexPathUnderFinger = mc.tableView.indexPathForRowAtPoint(loc)
 				mc.tableView.selectRowAtIndexPath(indexPathUnderFinger, animated: false, scrollPosition: .Top)
 			} else {
-				if let selected = mc.tableView.indexPathForSelectedRow() {
+				if let selected = mc.tableView.indexPathForSelectedRow {
 					mc.tableView.deselectRowAtIndexPath(selected, animated: false)
 				}
 			}

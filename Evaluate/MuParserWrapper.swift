@@ -49,7 +49,7 @@ extension MuParserWrapper {
 		var first: NSMutableString?
 		var second: NSMutableString?
 		
-		do {
+		repeat {
 			first = innerMangler(stringToMangle)
 			second = innerMangler(first!)
 			

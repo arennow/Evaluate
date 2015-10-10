@@ -3,4 +3,5 @@
 
 target 'Evaluate' do
 	pod 'R.swift'
+	pod "RegexKitLite"
 end
