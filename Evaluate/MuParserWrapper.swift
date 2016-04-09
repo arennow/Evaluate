@@ -28,19 +28,19 @@ extension MuParserWrapper {
 	}
 
 	private static func mangleInputString(str: String) -> String {
-		func innerMangler(var str: NSMutableString) -> NSMutableString {
-			str = NSMutableString(string: str.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+		func innerMangler(str: NSMutableString) -> NSMutableString {
+			let mangledString = NSMutableString(string: str.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
 			
-			str.replaceOccurrencesOfString("**", withString: "^", options: .LiteralSearch, range: NSRange(location: 0, length: str.length))
+			mangledString.replaceOccurrencesOfString("**", withString: "^", options: .LiteralSearch, range: NSRange(location: 0, length: mangledString.length))
 			
-			str.replaceOccurrencesOfRegex("^([\\-\\+\\/\\*^])", withString: "L$1")
+			mangledString.replaceOccurrencesOfRegex("^([\\-\\+\\/\\*^])", withString: "L$1")
 			
-			str.replaceOccurrencesOfRegex("([\\d\\)L])\\(", withString: "$1*(")
-			str.replaceOccurrencesOfRegex("\\)([\\d\\(L])", withString: ")*$1")
-			str.replaceOccurrencesOfRegex("L([\\dL]+)", withString: "L*$1")
-			str.replaceOccurrencesOfRegex("([\\dL]+)L", withString: "$1*L")
+			mangledString.replaceOccurrencesOfRegex("([\\d\\)L])\\(", withString: "$1*(")
+			mangledString.replaceOccurrencesOfRegex("\\)([\\d\\(L])", withString: ")*$1")
+			mangledString.replaceOccurrencesOfRegex("L([\\dL]+)", withString: "L*$1")
+			mangledString.replaceOccurrencesOfRegex("([\\dL]+)L", withString: "$1*L")
 			
-			return str
+			return mangledString
 		}
 		
 		let mutStr = NSMutableString(string: str)

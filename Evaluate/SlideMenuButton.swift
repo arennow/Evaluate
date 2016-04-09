@@ -31,9 +31,9 @@ class SlideMenuButton : UIButton {
 	}
 	
 	private func commonInitialization() {
-		self.addTarget(self, action: "touchDown", forControlEvents: .TouchDown)
-		self.addTarget(self, action: "touchUp", forControlEvents: .TouchUpInside)
-		self.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "infoPan:"))
+		self.addTarget(self, action: #selector(SlideMenuButton.touchDown), forControlEvents: .TouchDown)
+		self.addTarget(self, action: #selector(SlideMenuButton.touchUp), forControlEvents: .TouchUpInside)
+		self.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(SlideMenuButton.infoPan(_:))))
 	}
 	
 	@objc private func touchDown() {
@@ -62,7 +62,7 @@ class SlideMenuButton : UIButton {
 			return
 			
 		case .Possible:
-			print("\(__FUNCTION__): \(gesture.state.rawValue) happened. Odd.")
+			print("\(#function): \(gesture.state.rawValue) happened. Odd.")
 			return
 			
 		case .Changed:

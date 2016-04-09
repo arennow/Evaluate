@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import iAd
 
 func +<K, V>(lhs: Dictionary<K, V>, rhs: Dictionary<K, V>) -> Dictionary<K, V> {
 	var outDict = lhs
@@ -21,16 +20,12 @@ func +<K, V>(lhs: Dictionary<K, V>, rhs: Dictionary<K, V>) -> Dictionary<K, V> {
 
 postfix operator =! {}
 
-class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFieldDelegate {
+class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet var inputTextField: UITextField!
 	@IBOutlet var outputTextScrollView: UIScrollView!
-	@IBOutlet var bannerView: ADBannerView!
 	@IBOutlet var infoButton: SlideMenuButton!
-	@IBOutlet var bannerViewVisibleScrollViewLayoutConstraint: NSLayoutConstraint!
-			  var bannerViewInvisibleScrollViewLayoutConstraint: NSLayoutConstraint!
 	let muParserWrapper = MuParserWrapper()
 	var lastInput = String()
-	var adBannerVisible = true
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -40,15 +35,9 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		inputTextField.tintColor = UIColor.darkGrayColor()
 		infoButton.backgroundColor = outputTextScrollView.backgroundColor
 		
-		let action = {
-			(str: String) -> Void in
-			print("You tapped \(str)")
-		}
-		
 		infoButton.menuController = SlideMenuTableViewController(cellConfigurations:
 			[
-				SlideMenuTableViewController.CellConfiguration(title: "Ad-Free Upgrade", action: action),
-				SlideMenuTableViewController.CellConfiguration(title: "Legal", action: {
+				.init(title: "Legal", action: {
 					[weak self]
 					_ in
 
@@ -56,7 +45,7 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 						this.performSegueWithIdentifier(R.segue.localWebView, sender: this)
 					}
 				}),
-				SlideMenuTableViewController.CellConfiguration(title: "Last", action: {
+				.init(title: "Last", action: {
 					[weak self]
 					_ in
 					
@@ -66,21 +55,6 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 				})
 			]
 		)
-		
-		bannerViewInvisibleScrollViewLayoutConstraint = NSLayoutConstraint(
-			item: outputTextScrollView,
-			attribute: .Top,
-			relatedBy: .Equal,
-			toItem: self.topLayoutGuide,
-			attribute: .Bottom,
-			multiplier: 1,
-			constant: 0)
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		setAdBannerVisible(false, animated: false)
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -97,33 +71,14 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		}, completion: nil)
 	}
 	
-	func setAdBannerVisible(visible: Bool, animated: Bool) {
-		adBannerVisible = visible
-		
-		bannerViewVisibleScrollViewLayoutConstraint.active = false
-		bannerViewInvisibleScrollViewLayoutConstraint.active = false
-		
-		let animationCompletion: ((Bool) -> Void)?
-		
-		if adBannerVisible {
-			bannerView.hidden = false
-			bannerViewVisibleScrollViewLayoutConstraint.active = true
-			animationCompletion = nil
-		} else {
-			bannerViewInvisibleScrollViewLayoutConstraint.active = true
-			animationCompletion = {
-				_ in
-				self.bannerView.hidden = true
-			}
-		}
-		
-		if animated {
-			CalculatorViewController.animateConstraintChangesInView(outputTextScrollView, completion: animationCompletion)
-		}
-	}
-	
 	@IBAction func inputButtonPushed(sender: UIButton) {
-		inputTextField.text! += sender.currentTitle!
+		let insertionText = sender.currentTitle!
+		
+		if let range = inputTextField.selectedTextRange {
+			inputTextField.replaceRange(range, withText: insertionText)
+		} else {
+			inputTextField.text! += insertionText
+		}
 	}
 	
 	@IBAction func equalsButtonPushed() {
@@ -174,14 +129,6 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		return .LightContent
 	}
 	
-	func bannerViewDidLoadAd(banner: ADBannerView!) {
-		setAdBannerVisible(true, animated: true)
-	}
-	
-	func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-		setAdBannerVisible(false, animated: true)
-	}
-	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
 		self.equalsButtonPushed()
 		
@@ -214,7 +161,7 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		
 		let basicAttributes: [String : AnyObject] = [
 			NSForegroundColorAttributeName : UIColor.whiteColor(),
-			NSFontAttributeName : UIFont.systemFontOfSize(inputTextField.font!.pointSize)
+			NSFontAttributeName : inputTextField.font!
 		]
 		
 		let leftAlignmentAttributes: [String : AnyObject] = [
@@ -227,7 +174,7 @@ class CalculatorViewController: UIViewController, ADBannerViewDelegate, UITextFi
 		
 		let expressionAttributedString = NSAttributedString(string: expression, attributes: basicAttributes + leftAlignmentAttributes)
 		
-		let answerString = NSString(format: "%g", result) as String
+		let answerString = String(format: "%g", result)
 		
 		let answerAttributedString = NSAttributedString(string: answerString, attributes: basicAttributes + rightAlignmentAttributes)
 		
