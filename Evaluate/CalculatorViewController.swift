@@ -45,6 +45,14 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 						this.performSegueWithIdentifier(R.segue.localWebView, sender: this)
 					}
 				}),
+				.init(title: "Clear", action: {
+					[weak self]
+					_ in
+					
+					if let this = self {
+						this.clearScrollView()
+					}
+				}),
 				.init(title: "Last", action: {
 					[weak self]
 					_ in
@@ -189,6 +197,13 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 				self.outputTextScrollView.setContentOffset(offset, animated: false)
 			}
 		}
+	}
+	
+	private func clearScrollView() {
+		for view in self.outputTextScrollView.subviews where view is UILabel {
+			view.removeFromSuperview()
+		}
+		self.outputTextScrollView.contentSize = CGSize.zero
 	}
 	
 	private static func animateConstraintChangesInView(view: UIView, completion: ((Bool) -> Void)? = nil) {
