@@ -30,6 +30,12 @@ extension CGRect {
 	}
 }
 
+extension UIView {
+	class func animate(duration duration: NSTimeInterval, options: UIViewAnimationOptions, animations: (() -> ())) {
+		return self.animateWithDuration(duration, delay: 0, options: options, animations: animations, completion: nil)
+	}
+}
+
 func performBlockOnMainThreadAfterDelay(delay: Double, block: Void -> Void) {
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), block)
 }

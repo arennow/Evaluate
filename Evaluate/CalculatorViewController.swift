@@ -184,7 +184,10 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	
 	private func scrollToBottomOfScrollView() {
 		if outputTextScrollView.contentSize.height > outputTextScrollView.frame.size.height {
-			outputTextScrollView.setContentOffset(CGPoint(x: 0, y: outputTextScrollView.contentSize.height - outputTextScrollView.frame.size.height), animated: true)
+			UIView.animate(duration: 1.0/3.0, options: .BeginFromCurrentState) {
+				let offset = CGPoint(x: 0, y: self.outputTextScrollView.contentSize.height - self.outputTextScrollView.frame.size.height)
+				self.outputTextScrollView.setContentOffset(offset, animated: false)
+			}
 		}
 	}
 	

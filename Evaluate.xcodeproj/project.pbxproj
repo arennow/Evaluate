@@ -30,7 +30,7 @@
 		93ABBB8C1AB9F17800ED2389 /* MuParserWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB8B1AB9F17800ED2389 /* MuParserWrapper.mm */; };
 		93ABBB8E1ABA0EB900ED2389 /* MuParserWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ABBB8D1ABA0EB900ED2389 /* MuParserWrapper.swift */; };
 		93ABBB941ABA185400ED2389 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93ABBB931ABA185400ED2389 /* libicucore.dylib */; };
-		93ACDE861BC85C0500E3E682 /* Enumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACDE851BC85C0500E3E682 /* Enumerable.swift */; settings = {ASSET_TAGS = (); }; };
+		93ACDE861BC85C0500E3E682 /* Enumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACDE851BC85C0500E3E682 /* Enumerable.swift */; };
 		93B1F8731AC28A9700367F23 /* SlideMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B1F8721AC28A9700367F23 /* SlideMenuButton.swift */; };
 		93D833791ACA450C00672DC0 /* SlideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D833781ACA450C00672DC0 /* SlideMenuTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -258,6 +258,7 @@
 				TargetAttributes = {
 					9318E59F1AB9CF5D008DB5B6 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 8UE83WXBS4;
 					};
 				};
 			};
@@ -476,10 +477,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Evaluate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lithiumcube.$(PRODUCT_NAME:rfc1034identifier)-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lithiumcube.Evaluate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Evaluate/Evaluate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -492,10 +494,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Evaluate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lithiumcube.$(PRODUCT_NAME:rfc1034identifier)-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lithiumcube.Evaluate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Evaluate/Evaluate-Bridging-Header.h";
 			};
