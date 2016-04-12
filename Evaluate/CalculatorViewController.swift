@@ -42,7 +42,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 					_ in
 
 					if let this = self {
-						this.performSegueWithIdentifier(R.segue.localWebView, sender: this)
+						this.performSegueWithIdentifier(R.segue.calculatorViewController.localWebView, sender: this)
 					}
 				}),
 				.init(title: "Clear", action: {
@@ -217,7 +217,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == R.segue.localWebView {
+		if segue.identifier == R.segue.calculatorViewController.localWebView.identifier {
 			if let navCon = segue.destinationViewController as? UINavigationController, let webVC = navCon.childViewControllers.first as? LocalWebViewController {
 				webVC.urlToDisplay = NSBundle.mainBundle().URLForResource("Legal", withExtension: "html")
 			}

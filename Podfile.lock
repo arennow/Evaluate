@@ -1,5 +1,7 @@
 PODS:
-  - R.swift (0.7.0)
+  - R.swift (2.1.0):
+    - R.swift.Library (~> 2.0.0)
+  - R.swift.Library (2.0.0)
   - RegexKitLite (4.0)
 
 DEPENDENCIES:
@@ -7,7 +9,8 @@ DEPENDENCIES:
   - RegexKitLite
 
 SPEC CHECKSUMS:
-  R.swift: 0702209dde5132cdf4599e29d1f6f9cf32966e98
+  R.swift: efff131531b5cf142e28fd94957806ff71ccbcf2
+  R.swift.Library: 9f4b2d12040daa1ffe336d8f7e1574f73721fd01
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

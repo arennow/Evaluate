@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RegexKitLite
 
 extension MuParserWrapper {
 	enum EvaluationResult {
