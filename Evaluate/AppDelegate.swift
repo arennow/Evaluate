@@ -10,5 +10,15 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-	var window: UIWindow?
+	var window: UIWindow? {
+		didSet {
+			if let window = window, recs = window.gestureRecognizers {
+				for rec in recs {
+					if rec.delaysTouchesBegan {
+						rec.delaysTouchesBegan = false
+					}
+				}
+			}
+		}
+	}
 }

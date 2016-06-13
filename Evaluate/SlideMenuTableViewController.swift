@@ -49,7 +49,7 @@ class SlideMenuTableViewController: UITableViewController {
 	}
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if let cellConfig = cellConfigurations.objectOrNilAtIndex(indexPath.row), let action = cellConfig.action {
+		if let cellConfig = cellConfigurations.objectOrNilAtIndex(indexPath.row), action = cellConfig.action {
 			action(cellConfig.title)
 		}
 	}

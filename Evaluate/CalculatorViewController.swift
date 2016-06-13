@@ -25,6 +25,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet var outputTextScrollView: UIScrollView!
 	@IBOutlet var infoButton: SlideMenuButton!
 	let muParserWrapper = MuParserWrapper()
+	
 	var lastInput = String()
 	
 	override func viewDidLoad() {
