@@ -11,10 +11,10 @@ import UIKit
 class SlideMenuTableViewController: UITableViewController {
 	struct CellConfiguration {
 		let title: String
-		let action: (String -> Void)?
+		let action: ((String) -> Void)?
 	}
 	
-	private static let cellIdentifier = "cell"
+	fileprivate static let cellIdentifier = "cell"
 	var cellConfigurations = [CellConfiguration]()
 	var preferredSize: CGSize {
 		return CGSize(width: 200, height: 44 * CGFloat(cellConfigurations.count))
@@ -27,29 +27,29 @@ class SlideMenuTableViewController: UITableViewController {
 	}
 	
 	override func viewDidLoad() {
-		self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: SlideMenuTableViewController.cellIdentifier)
+		self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: SlideMenuTableViewController.cellIdentifier)
 	}
 	
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return cellConfigurations.count
 	}
 	
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(SlideMenuTableViewController.cellIdentifier)!
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: SlideMenuTableViewController.cellIdentifier)!
 		
-		if let cellConfig = cellConfigurations.objectOrNilAtIndex(indexPath.row) {
+		if let cellConfig = cellConfigurations.optionalValue(at: indexPath.row) {
 			cell.textLabel!.text = cellConfig.title
 		}
 		
 		return cell
 	}
 	
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if let cellConfig = cellConfigurations.objectOrNilAtIndex(indexPath.row), action = cellConfig.action {
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if let cellConfig = cellConfigurations.optionalValue(at: indexPath.row), let action = cellConfig.action {
 			action(cellConfig.title)
 		}
 	}

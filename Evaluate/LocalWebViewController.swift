@@ -11,7 +11,7 @@ import UIKit
 class LocalWebViewController : UIViewController {
 	@IBOutlet var webView: UIWebView?
 	
-	var urlToDisplay: NSURL? {
+	var urlToDisplay: URL? {
 		didSet {
 			applyURL()
 		}
@@ -23,11 +23,11 @@ class LocalWebViewController : UIViewController {
 		applyURL()
 	}
 	
-	private func applyURL() {
+	fileprivate func applyURL() {
 		if let url = urlToDisplay {
-			self.navigationItem.title = url.lastPathComponent?.componentsSeparatedByString(".").first
+			self.navigationItem.title = url.lastPathComponent.components(separatedBy: ".").first
 			
-			let request = NSURLRequest(URL: url)
+			let request = URLRequest(url: url)
 			webView?.loadRequest(request)
 		}
 	}

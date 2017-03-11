@@ -18,8 +18,6 @@ func +<K, V>(lhs: Dictionary<K, V>, rhs: Dictionary<K, V>) -> Dictionary<K, V> {
 	return outDict
 }
 
-postfix operator =! {}
-
 class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet var inputTextField: UITextField!
 	@IBOutlet var outputTextScrollView: UIScrollView!
@@ -32,8 +30,8 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		super.viewDidLoad()
 		
 		// Disable system keyboard
-		inputTextField.inputView = UIView(frame: CGRect(origin: CGPointZero, size: CGSizeZero))
-		inputTextField.tintColor = UIColor.darkGrayColor()
+		inputTextField.inputView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
+		inputTextField.tintColor = UIColor.darkGray
 		infoButton.backgroundColor = outputTextScrollView.backgroundColor
 		
 		infoButton.menuController = SlideMenuTableViewController(cellConfigurations:
@@ -43,7 +41,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 					_ in
 
 					if let this = self {
-						this.performSegueWithIdentifier(R.segue.calculatorViewController.localWebView, sender: this)
+						this.performSegue(withIdentifier: R.segue.calculatorViewController.localWebView, sender: this)
 					}
 				}),
 				.init(title: "Clear", action: {
@@ -66,25 +64,25 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		)
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		inputTextField.becomeFirstResponder()
 	}
 	
-	override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-		super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
 		
-		coordinator.animateAlongsideTransition({ (_) -> Void in
+		coordinator.animate(alongsideTransition: { (_) -> Void in
 			self.view.layoutIfNeeded()
 		}, completion: nil)
 	}
 	
-	@IBAction func inputButtonPushed(sender: UIButton) {
+	@IBAction func inputButtonPushed(_ sender: UIButton) {
 		let insertionText = sender.currentTitle!
 		
 		if let range = inputTextField.selectedTextRange {
-			inputTextField.replaceRange(range, withText: insertionText)
+			inputTextField.replace(range, withText: insertionText)
 		} else {
 			inputTextField.text! += insertionText
 		}
@@ -93,21 +91,21 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	@IBAction func equalsButtonPushed() {
 		let typedExpression = inputTextField.text!
 		
-		if typedExpression.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+		if typedExpression.lengthOfBytes(using: String.Encoding.utf8) > 0 {
 			lastInput = typedExpression
 		}
 		
 		switch muParserWrapper.evaluate(lastInput) {
-		case .Success(let result, let mangledExpression):
+		case .success(let result, let mangledExpression):
 			inputTextField.text = nil
 			
 			addExpression(mangledExpression, andResultToDisplay: result)
 			
-		case .Failure(let errorMessage):
-			let alertController = UIAlertController(title: "Syntax Error", message: errorMessage, preferredStyle: .Alert)
-			alertController.addAction(UIAlertAction(title: "Okay", style: .Default, handler: nil))
+		case .failure(let errorMessage):
+			let alertController = UIAlertController(title: "Syntax Error", message: errorMessage, preferredStyle: .alert)
+			alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
 			
-			self.presentViewController(alertController, animated: true, completion: nil)
+			self.present(alertController, animated: true, completion: nil)
 		}
 		
 		scrollToBottomOfScrollView()
@@ -116,39 +114,39 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	@IBAction func deleteButtonPushed() {
 		var currentString = inputTextField.text!
 		
-		if currentString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+		if currentString.lengthOfBytes(using: String.Encoding.utf8) > 0 {
 			if let selectedRange = inputTextField.selectedTextRange {
-				if selectedRange.empty {
+				if selectedRange.isEmpty {
 					inputTextField.deleteBackward()
 				} else {
-					inputTextField.replaceRange(selectedRange, withText: "")
+					inputTextField.replace(selectedRange, withText: "")
 				}
 			} else {
-				currentString.removeAtIndex(currentString.endIndex.predecessor())
+				currentString.remove(at: currentString.characters.index(before: currentString.endIndex))
 				
 				// This shouldn't be necessary. It's probably a bug that it is, but whatever
-				dispatch_async(dispatch_get_main_queue()) {
+				DispatchQueue.main.async {
 					self.inputTextField.text = currentString
 				}
 			}
 		}
 	}
 	
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
+	override var preferredStatusBarStyle : UIStatusBarStyle {
+		return .lightContent
 	}
 	
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		self.equalsButtonPushed()
 		
 		return true
 	}
 	
-	private func addExpression(expression: String, andResultToDisplay result: Double) {
-		func appendString(string: NSAttributedString) {
-			func sizeOfString(string: NSAttributedString) -> CGSize {
-				var rect = string.boundingRectWithSize(CGSize(width: outputTextScrollView.frame.size.width, height: 0),
-					options: [.UsesLineFragmentOrigin, .UsesFontLeading],
+	fileprivate func addExpression(_ expression: String, andResultToDisplay result: Double) {
+		func appendString(_ string: NSAttributedString) {
+			func sizeOfString(_ string: NSAttributedString) -> CGSize {
+				var rect = string.boundingRect(with: CGSize(width: outputTextScrollView.frame.size.width, height: 0),
+					options: [.usesLineFragmentOrigin, .usesFontLeading],
 					context: nil)
 				
 				rect.size.width = outputTextScrollView.frame.size.width - 10 // For the scroll bar and equal space on the other side
@@ -162,23 +160,23 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 			let label = UILabel(frame: CGRect(origin: CGPoint(x: 5 /* to counter the space for the scroll bar */, y: previousContentSize.height),
 				size: additionSize))
 			label.attributedText = string
-			label.autoresizingMask = .FlexibleWidth
+			label.autoresizingMask = .flexibleWidth
 			
 			outputTextScrollView.addSubview(label)
 			outputTextScrollView.contentSize.height = previousContentSize.height+additionSize.height
 		}
 		
 		let basicAttributes: [String : AnyObject] = [
-			NSForegroundColorAttributeName : UIColor.whiteColor(),
+			NSForegroundColorAttributeName : UIColor.white,
 			NSFontAttributeName : inputTextField.font!
 		]
 		
 		let leftAlignmentAttributes: [String : AnyObject] = [
-			NSParagraphStyleAttributeName : {let x = NSMutableParagraphStyle();x.alignment = .Left; return x}()
+			NSParagraphStyleAttributeName : {let x = NSMutableParagraphStyle();x.alignment = .left; return x}()
 		]
 		
 		let rightAlignmentAttributes: [String: AnyObject] = [
-			NSParagraphStyleAttributeName : {let x = NSMutableParagraphStyle();x.alignment = .Right; return x}()
+			NSParagraphStyleAttributeName : {let x = NSMutableParagraphStyle();x.alignment = .right; return x}()
 		]
 		
 		let expressionAttributedString = NSAttributedString(string: expression, attributes: basicAttributes + leftAlignmentAttributes)
@@ -191,36 +189,36 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		appendString(answerAttributedString)
 	}
 	
-	private func scrollToBottomOfScrollView() {
+	fileprivate func scrollToBottomOfScrollView() {
 		if outputTextScrollView.contentSize.height > outputTextScrollView.frame.size.height {
-			UIView.animate(duration: 1.0/3.0, options: .BeginFromCurrentState) {
+			UIView.animate(duration: 1.0/3.0, options: .beginFromCurrentState) {
 				let offset = CGPoint(x: 0, y: self.outputTextScrollView.contentSize.height - self.outputTextScrollView.frame.size.height)
 				self.outputTextScrollView.setContentOffset(offset, animated: false)
 			}
 		}
 	}
 	
-	private func clearScrollView() {
+	fileprivate func clearScrollView() {
 		for view in self.outputTextScrollView.subviews where view is UILabel {
 			view.removeFromSuperview()
 		}
 		self.outputTextScrollView.contentSize = CGSize.zero
 	}
 	
-	private static func animateConstraintChangesInView(view: UIView, completion: ((Bool) -> Void)? = nil) {
-		UIView.animateWithDuration(0.333,
+	fileprivate static func animateConstraintChangesInView(_ view: UIView, completion: ((Bool) -> Void)? = nil) {
+		UIView.animate(withDuration: 0.333,
 			delay: 0,
-			options: .BeginFromCurrentState,
+			options: .beginFromCurrentState,
 			animations: {
 				view.superview?.layoutIfNeeded()
 			},
 			completion: completion)
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == R.segue.calculatorViewController.localWebView.identifier {
-			if let navCon = segue.destinationViewController as? UINavigationController, let webVC = navCon.childViewControllers.first as? LocalWebViewController {
-				webVC.urlToDisplay = NSBundle.mainBundle().URLForResource("Legal", withExtension: "html")
+			if let navCon = segue.destination as? UINavigationController, let webVC = navCon.childViewControllers.first as? LocalWebViewController {
+				webVC.urlToDisplay = Bundle.main.url(forResource: "Legal", withExtension: "html")
 			}
 		}
 	}

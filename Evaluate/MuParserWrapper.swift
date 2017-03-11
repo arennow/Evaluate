@@ -11,35 +11,35 @@ import RegexKitLite
 
 extension MuParserWrapper {
 	enum EvaluationResult {
-		case Success(result: Double, mangledExpression: String)
-		case Failure(errorMessage: String)
+		case success(result: Double, mangledExpression: String)
+		case failure(errorMessage: String)
 	}
 	
-	func evaluate(expression: String) -> EvaluationResult {
+	func evaluate(_ expression: String) -> EvaluationResult {
 		var result = 0.0
 		var errorMessage: NSString?
 		
 		let mangledExpression = MuParserWrapper.mangleInputString(expression)
 		
 		if self.evaluate(mangledExpression, result: &result, errorMessage: &errorMessage) {
-			return .Success(result: result, mangledExpression: mangledExpression)
+			return .success(result: result, mangledExpression: mangledExpression)
 		} else {
-			return .Failure(errorMessage: errorMessage! as String)
+			return .failure(errorMessage: errorMessage! as String)
 		}
 	}
 
-	private static func mangleInputString(str: String) -> String {
-		func innerMangler(str: NSMutableString) -> NSMutableString {
-			let mangledString = NSMutableString(string: str.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+	fileprivate static func mangleInputString(_ str: String) -> String {
+		func innerMangler(_ str: NSMutableString) -> NSMutableString {
+			let mangledString = NSMutableString(string: str.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
 			
-			mangledString.replaceOccurrencesOfString("**", withString: "^", options: .LiteralSearch, range: NSRange(location: 0, length: mangledString.length))
+			mangledString.replaceOccurrences(of: "**", with: "^", options: .literal, range: NSRange(location: 0, length: mangledString.length))
 			
-			mangledString.replaceOccurrencesOfRegex("^([\\-\\+\\/\\*^])", withString: "L$1")
+			mangledString.replaceOccurrences(ofRegex: "^([\\-\\+\\/\\*^])", with: "L$1")
 			
-			mangledString.replaceOccurrencesOfRegex("([\\d\\)L])\\(", withString: "$1*(")
-			mangledString.replaceOccurrencesOfRegex("\\)([\\d\\(L])", withString: ")*$1")
-			mangledString.replaceOccurrencesOfRegex("L([\\dL]+)", withString: "L*$1")
-			mangledString.replaceOccurrencesOfRegex("([\\dL]+)L", withString: "$1*L")
+			mangledString.replaceOccurrences(ofRegex: "([\\d\\)L])\\(", with: "$1*(")
+			mangledString.replaceOccurrences(ofRegex: "\\)([\\d\\(L])", with: ")*$1")
+			mangledString.replaceOccurrences(ofRegex: "L([\\dL]+)", with: "L*$1")
+			mangledString.replaceOccurrences(ofRegex: "([\\dL]+)L", with: "$1*L")
 			
 			return mangledString
 		}

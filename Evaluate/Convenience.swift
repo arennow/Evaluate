@@ -10,40 +10,50 @@ import UIKit
 
 extension UIViewController {
 	@IBAction func dismiss() {
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 }
 
 extension CGRect {
 	enum VerticalSide {
-		case Top, Bottom
+		case top, bottom
 	}
 	
 	enum HorizontalSide {
-		case Left, Right
+		case left, right
 	}
 	
-	func pointInCorner(vert: VerticalSide, _ horiz: HorizontalSide) -> CGPoint {
+	func pointInCorner(_ vert: VerticalSide, _ horiz: HorizontalSide) -> CGPoint {
 		return CGPoint(
-			x: horiz == .Left ? self.minX : self.maxX,
-			y: vert == .Top ? self.minY : self.maxY)
+			x: horiz == .left ? self.minX : self.maxX,
+			y: vert == .top ? self.minY : self.maxY)
 	}
 }
 
 extension UIView {
-	class func animate(duration duration: NSTimeInterval, options: UIViewAnimationOptions, animations: (() -> ())) {
-		return self.animateWithDuration(duration, delay: 0, options: options, animations: animations, completion: nil)
+	class func animate(duration: TimeInterval, options: UIViewAnimationOptions, animations: @escaping (() -> ())) {
+		return self.animate(withDuration: duration, delay: 0, options: options, animations: animations, completion: nil)
 	}
 }
 
-func performBlockOnMainThreadAfterDelay(delay: Double, block: Void -> Void) {
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), block)
+func performBlockOnMainThreadAfterDelay(_ delay: Double, block: @escaping (Void) -> Void) {
+	DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: block)
 }
 
-func <<<T>(inout lhs: [T], rhs: T) {
+func <<<T>(lhs: inout [T], rhs: T) {
 	lhs.append(rhs)
 }
 
-func +=<T>(inout lhs: [T], rhs: [T]) {
+func +=<T>(lhs: inout [T], rhs: [T]) {
 	lhs = lhs+rhs
+}
+
+extension Array {
+	func optionalValue(at index: Int) -> Element? {
+		if index < self.count {
+			return self[index]
+		} else {
+			return nil
+		}
+	}
 }
