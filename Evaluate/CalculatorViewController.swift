@@ -30,11 +30,11 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		super.viewDidLoad()
 		
 		// Disable system keyboard
-		inputTextField.inputView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
-		inputTextField.tintColor = UIColor.darkGray
-		infoButton.backgroundColor = outputTextScrollView.backgroundColor
+		self.inputTextField.inputView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
+		self.inputTextField.tintColor = UIColor.darkGray
+		self.infoButton.backgroundColor = outputTextScrollView.backgroundColor
 		
-		infoButton.menuController = SlideMenuTableViewController(cellConfigurations:
+		self.infoButton.menuController = SlideMenuTableViewController(cellConfigurations:
 			[
 				.init(title: "Legal", action: {
 					[weak self]
@@ -67,7 +67,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		inputTextField.becomeFirstResponder()
+		self.inputTextField.becomeFirstResponder()
 	}
 	
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -81,23 +81,23 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	@IBAction func inputButtonPushed(_ sender: UIButton) {
 		let insertionText = sender.currentTitle!
 		
-		if let range = inputTextField.selectedTextRange {
-			inputTextField.replace(range, withText: insertionText)
+		if let range = self.inputTextField.selectedTextRange {
+			self.inputTextField.replace(range, withText: insertionText)
 		} else {
-			inputTextField.text! += insertionText
+			self.inputTextField.text! += insertionText
 		}
 	}
 	
 	@IBAction func equalsButtonPushed() {
-		let typedExpression = inputTextField.text!
+		let typedExpression = self.inputTextField.text!
 		
 		if typedExpression.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-			lastInput = typedExpression
+			self.lastInput = typedExpression
 		}
 		
-		switch muParserWrapper.evaluate(lastInput) {
+		switch self.muParserWrapper.evaluate(self.lastInput) {
 		case .success(let result, let mangledExpression):
-			inputTextField.text = nil
+			self.inputTextField.text = nil
 			
 			addExpression(mangledExpression, andResultToDisplay: result)
 			
@@ -108,18 +108,18 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 			self.present(alertController, animated: true, completion: nil)
 		}
 		
-		scrollToBottomOfScrollView()
+		self.scrollToBottomOfScrollView()
 	}
 	
 	@IBAction func deleteButtonPushed() {
-		var currentString = inputTextField.text!
+		var currentString = self.inputTextField.text!
 		
 		if currentString.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-			if let selectedRange = inputTextField.selectedTextRange {
+			if let selectedRange = self.inputTextField.selectedTextRange {
 				if selectedRange.isEmpty {
-					inputTextField.deleteBackward()
+					self.inputTextField.deleteBackward()
 				} else {
-					inputTextField.replace(selectedRange, withText: "")
+					self.inputTextField.replace(selectedRange, withText: "")
 				}
 			} else {
 				currentString.remove(at: currentString.characters.index(before: currentString.endIndex))
@@ -149,12 +149,12 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 					options: [.usesLineFragmentOrigin, .usesFontLeading],
 					context: nil)
 				
-				rect.size.width = outputTextScrollView.frame.size.width - 10 // For the scroll bar and equal space on the other side
+				rect.size.width = self.outputTextScrollView.frame.size.width - 10 // For the scroll bar and equal space on the other side
 				
 				return rect.size
 			}
 			
-			let previousContentSize = outputTextScrollView.contentSize
+			let previousContentSize = self.outputTextScrollView.contentSize
 			let additionSize = sizeOfString(string)
 			
 			let label = UILabel(frame: CGRect(origin: CGPoint(x: 5 /* to counter the space for the scroll bar */, y: previousContentSize.height),
@@ -162,13 +162,13 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 			label.attributedText = string
 			label.autoresizingMask = .flexibleWidth
 			
-			outputTextScrollView.addSubview(label)
-			outputTextScrollView.contentSize.height = previousContentSize.height+additionSize.height
+			self.outputTextScrollView.addSubview(label)
+			self.outputTextScrollView.contentSize.height = previousContentSize.height+additionSize.height
 		}
 		
 		let basicAttributes: [String : AnyObject] = [
 			NSForegroundColorAttributeName : UIColor.white,
-			NSFontAttributeName : inputTextField.font!
+			NSFontAttributeName : self.inputTextField.font!
 		]
 		
 		let leftAlignmentAttributes: [String : AnyObject] = [
@@ -190,7 +190,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	fileprivate func scrollToBottomOfScrollView() {
-		if outputTextScrollView.contentSize.height > outputTextScrollView.frame.size.height {
+		if self.outputTextScrollView.contentSize.height > self.outputTextScrollView.frame.size.height {
 			UIView.animate(duration: 1.0/3.0, options: .beginFromCurrentState) {
 				let offset = CGPoint(x: 0, y: self.outputTextScrollView.contentSize.height - self.outputTextScrollView.frame.size.height)
 				self.outputTextScrollView.setContentOffset(offset, animated: false)

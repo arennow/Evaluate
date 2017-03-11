@@ -13,14 +13,14 @@ class LocalWebViewController : UIViewController {
 	
 	var urlToDisplay: URL? {
 		didSet {
-			applyURL()
+			self.applyURL()
 		}
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		applyURL()
+		self.applyURL()
 	}
 	
 	fileprivate func applyURL() {
@@ -28,7 +28,7 @@ class LocalWebViewController : UIViewController {
 			self.navigationItem.title = url.lastPathComponent.components(separatedBy: ".").first
 			
 			let request = URLRequest(url: url)
-			webView?.loadRequest(request)
+			self.webView?.loadRequest(request)
 		}
 	}
 }

@@ -15,19 +15,19 @@ class SlideMenuButton : UIButton {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		commonInitialization()
+		self.commonInitialization()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		commonInitialization()
+		self.commonInitialization()
 	}
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		
-		commonInitialization()
+		self.commonInitialization()
 	}
 	
 	fileprivate func commonInitialization() {
@@ -37,20 +37,20 @@ class SlideMenuButton : UIButton {
 	}
 	
 	@objc fileprivate func touchDown() {
-		appearMenu()
+		self.appearMenu()
 	}
 	
 	@objc fileprivate func touchUp() {
-		disappearMenu()
+		self.disappearMenu()
 	}
 	
 	@objc fileprivate func infoPan(_ gesture: UIPanGestureRecognizer) {
 		switch gesture.state {
 		case .began:
-			appearMenu()
+			self.appearMenu()
 			
 		case .ended:
-			if let mc = menuController, let selectedIP = mc.tableView.indexPathForSelectedRow {
+			if let mc = self.menuController, let selectedIP = mc.tableView.indexPathForSelectedRow {
 				mc.tableView.delegate?.tableView!(mc.tableView, didSelectRowAt: selectedIP)
 			}
 			
@@ -69,9 +69,9 @@ class SlideMenuButton : UIButton {
 			break
 		}
 		
-		let loc = gesture.location(in: menuController?.view)
+		let loc = gesture.location(in: self.menuController?.view)
 		
-		if let mc = menuController {
+		if let mc = self.menuController {
 			if mc.view.bounds.contains(loc) {
 				let indexPathUnderFinger = mc.tableView.indexPathForRow(at: loc)
 				mc.tableView.selectRow(at: indexPathUnderFinger, animated: false, scrollPosition: .top)
@@ -84,7 +84,7 @@ class SlideMenuButton : UIButton {
 	}
 	
 	fileprivate func appearMenu() {
-		if let mc = menuController, !menuIsVisible {
+		if let mc = self.menuController, !self.menuIsVisible {
 			mc.view.transform = CGAffineTransform(scaleX: 1, y: 1)
 			var frame = CGRect(origin: self.frame.origin, size: mc.preferredSize)
 			frame.origin.y -= frame.size.height
@@ -100,12 +100,12 @@ class SlideMenuButton : UIButton {
 				mc.view.frame = frame
 			}) 
 			
-			menuIsVisible = true
+			self.menuIsVisible = true
 		}
 	}
 	
 	fileprivate func disappearMenu() {
-		if let mc = menuController, menuIsVisible {
+		if let mc = self.menuController, self.menuIsVisible {
 			UIView.animate(withDuration: 0.333,
 				animations: {
 					mc.view.center = mc.view.frame.pointInCorner(.bottom, .left)

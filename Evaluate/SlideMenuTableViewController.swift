@@ -15,9 +15,9 @@ class SlideMenuTableViewController: UITableViewController {
 	}
 	
 	fileprivate static let cellIdentifier = "cell"
-	var cellConfigurations = [CellConfiguration]()
+	var cellConfigurations = Array<CellConfiguration>()
 	var preferredSize: CGSize {
-		return CGSize(width: 200, height: 44 * CGFloat(cellConfigurations.count))
+		return CGSize(width: 200, height: 44 * CGFloat(self.cellConfigurations.count))
 	}
 	
 	convenience init(cellConfigurations: [CellConfiguration]) {
@@ -35,13 +35,13 @@ class SlideMenuTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return cellConfigurations.count
+		return self.cellConfigurations.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: SlideMenuTableViewController.cellIdentifier)!
 		
-		if let cellConfig = cellConfigurations.optionalValue(at: indexPath.row) {
+		if let cellConfig = self.cellConfigurations.optionalValue(at: indexPath.row) {
 			cell.textLabel!.text = cellConfig.title
 		}
 		
@@ -49,7 +49,7 @@ class SlideMenuTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let cellConfig = cellConfigurations.optionalValue(at: indexPath.row), let action = cellConfig.action {
+		if let cellConfig = self.cellConfigurations.optionalValue(at: indexPath.row), let action = cellConfig.action {
 			action(cellConfig.title)
 		}
 	}

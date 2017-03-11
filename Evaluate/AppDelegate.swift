@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow? {
 		didSet {
-			if let window = window, let recs = window.gestureRecognizers {
+			if let window = self.window, let recs = window.gestureRecognizers {
 				for rec in recs {
 					if rec.delaysTouchesBegan {
 						rec.delaysTouchesBegan = false
