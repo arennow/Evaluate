@@ -12,19 +12,19 @@ import RegexKitLite
 extension MuParserWrapper {
 	enum EvaluationResult {
 		case success(result: Double, mangledExpression: String)
-		case failure(errorMessage: String)
+		case failure(error: Error)
 	}
 	
 	func evaluate(_ expression: String) -> EvaluationResult {
-		var result = 0.0
-		var errorMessage: NSString?
-		
 		let mangledExpression = MuParserWrapper.mangleInputString(expression)
 		
-		if self.evaluate(mangledExpression, result: &result, errorMessage: &errorMessage) {
+		do {
+			var result: Double = 0
+			try self.evaluate(mangledExpression, result: &result)
+			
 			return .success(result: result, mangledExpression: mangledExpression)
-		} else {
-			return .failure(errorMessage: errorMessage! as String)
+		} catch {
+			return .failure(error: error)
 		}
 	}
 

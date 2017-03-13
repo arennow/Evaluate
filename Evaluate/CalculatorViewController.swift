@@ -19,8 +19,8 @@ func +<K, V>(lhs: Dictionary<K, V>, rhs: Dictionary<K, V>) -> Dictionary<K, V> {
 }
 
 class CalculatorViewController: UIViewController, UITextFieldDelegate {
-	@IBOutlet var inputTextField: UITextField!
-	@IBOutlet var outputTextScrollView: UIScrollView!
+	@IBOutlet fileprivate var inputTextField: UITextField!
+	@IBOutlet fileprivate var outputTextScrollView: UIScrollView!
 	@IBOutlet var infoButton: SlideMenuButton!
 	let muParserWrapper = MuParserWrapper()
 	
@@ -32,7 +32,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		// Disable system keyboard
 		self.inputTextField.inputView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
 		self.inputTextField.tintColor = UIColor.darkGray
-		self.infoButton.backgroundColor = outputTextScrollView.backgroundColor
+		self.infoButton.backgroundColor = self.outputTextScrollView.backgroundColor
 		
 		self.infoButton.menuController = SlideMenuTableViewController(cellConfigurations:
 			[
@@ -78,59 +78,6 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		}, completion: nil)
 	}
 	
-	@IBAction func inputButtonPushed(_ sender: UIButton) {
-		let insertionText = sender.currentTitle!
-		
-		if let range = self.inputTextField.selectedTextRange {
-			self.inputTextField.replace(range, withText: insertionText)
-		} else {
-			self.inputTextField.text! += insertionText
-		}
-	}
-	
-	@IBAction func equalsButtonPushed() {
-		let typedExpression = self.inputTextField.text!
-		
-		if typedExpression.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-			self.lastInput = typedExpression
-		}
-		
-		switch self.muParserWrapper.evaluate(self.lastInput) {
-		case .success(let result, let mangledExpression):
-			self.inputTextField.text = nil
-			
-			addExpression(mangledExpression, andResultToDisplay: result)
-			
-		case .failure(let errorMessage):
-			let alertController = UIAlertController(title: "Syntax Error", message: errorMessage, preferredStyle: .alert)
-			alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-			
-			self.present(alertController, animated: true, completion: nil)
-		}
-		
-		self.scrollToBottomOfScrollView()
-	}
-	
-	@IBAction func deleteButtonPushed() {
-		var currentString = self.inputTextField.text!
-		
-		if currentString.lengthOfBytes(using: String.Encoding.utf8) > 0 {
-			if let selectedRange = self.inputTextField.selectedTextRange {
-				if selectedRange.isEmpty {
-					self.inputTextField.deleteBackward()
-				} else {
-					self.inputTextField.replace(selectedRange, withText: "")
-				}
-			} else {
-				currentString.remove(at: currentString.characters.index(before: currentString.endIndex))
-				
-				// This shouldn't be necessary. It's probably a bug that it is, but whatever
-				DispatchQueue.main.async {
-					self.inputTextField.text = currentString
-				}
-			}
-		}
-	}
 	
 	override var preferredStatusBarStyle : UIStatusBarStyle {
 		return .lightContent
@@ -221,5 +168,61 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 				webVC.urlToDisplay = Bundle.main.url(forResource: "Legal", withExtension: "html")
 			}
 		}
+	}
+}
+
+extension CalculatorViewController {
+	@IBAction private func inputButtonPushed(_ sender: UIButton) {
+		let insertionText = sender.currentTitle!
+		
+		if let range = self.inputTextField.selectedTextRange {
+			self.inputTextField.replace(range, withText: insertionText)
+		} else {
+			self.inputTextField.text! += insertionText
+		}
+	}
+	
+	@IBAction private func deleteButtonPushed() {
+		var currentString = self.inputTextField.text!
+		
+		if currentString.lengthOfBytes(using: String.Encoding.utf8) > 0 {
+			if let selectedRange = self.inputTextField.selectedTextRange {
+				if selectedRange.isEmpty {
+					self.inputTextField.deleteBackward()
+				} else {
+					self.inputTextField.replace(selectedRange, withText: "")
+				}
+			} else {
+				currentString.remove(at: currentString.characters.index(before: currentString.endIndex))
+				
+				// This shouldn't be necessary. It's probably a bug that it is, but whatever
+				DispatchQueue.main.async {
+					self.inputTextField.text = currentString
+				}
+			}
+		}
+	}
+	
+	@IBAction fileprivate func equalsButtonPushed() {
+		let typedExpression = self.inputTextField.text!
+		
+		if !typedExpression.isEmpty {
+			self.lastInput = typedExpression
+		}
+		
+		switch self.muParserWrapper.evaluate(self.lastInput) {
+		case .success(let result, let mangledExpression):
+			self.inputTextField.text = nil
+			
+			addExpression(mangledExpression, andResultToDisplay: result)
+			
+		case .failure(let error):
+			let alertController = UIAlertController(title: "Syntax Error", message: error.localizedDescription, preferredStyle: .alert)
+			alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+			
+			self.present(alertController, animated: true, completion: nil)
+		}
+		
+		self.scrollToBottomOfScrollView()
 	}
 }

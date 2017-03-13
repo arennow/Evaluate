@@ -26,14 +26,19 @@ using namespace mu;
 	return self;
 }
 
--(BOOL)evaluate:(NSString*)expression result:(double*)result errorMessage:(NSString* __autoreleasing*)errorMessage {
+-(BOOL)evaluateExpression:(NSString*)expression result:(double*)result error:(NSError* __autoreleasing * _Nullable)error {
 	try {
 		_parser.SetExpr(expression.UTF8String);
 		*result = _lastValue = _parser.Eval();
 		
 		return YES;
 	} catch (Parser::exception_type &e) {
-		*errorMessage = [NSString stringWithCString:e.GetMsg().c_str() encoding:NSUTF8StringEncoding];
+		if (error) {
+			NSString* errorMessage = [NSString stringWithCString:e.GetMsg().c_str() encoding:NSUTF8StringEncoding];
+			NSError* outError = [NSError errorWithDomain:@"MuParser" code:-100 userInfo:@{NSLocalizedDescriptionKey: errorMessage}];
+			
+			*error = outError;
+		}
 		
 		return NO;
 	}
