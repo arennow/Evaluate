@@ -20,7 +20,7 @@ using namespace mu;
 	self = [super init];
 	
 	if (self) {
-		_parser.DefineVar("L", &_lastValue);
+		_parser.DefineVar("Prev", &_lastValue);
 	}
 	
 	return self;

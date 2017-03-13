@@ -34,12 +34,12 @@ extension MuParserWrapper {
 			
 			mangledString.replaceOccurrences(of: "**", with: "^", options: .literal, range: NSRange(location: 0, length: mangledString.length))
 			
-			mangledString.replaceOccurrences(ofRegex: "^([\\-\\+\\/\\*^])", with: "L$1")
+			mangledString.replaceOccurrences(ofRegex: "^([\\-\\+\\/\\*^])", with: "Prev$1")
 			
-			mangledString.replaceOccurrences(ofRegex: "([\\d\\)L])\\(", with: "$1*(")
-			mangledString.replaceOccurrences(ofRegex: "\\)([\\d\\(L])", with: ")*$1")
-			mangledString.replaceOccurrences(ofRegex: "L([\\dL]+)", with: "L*$1")
-			mangledString.replaceOccurrences(ofRegex: "([\\dL]+)L", with: "$1*L")
+			mangledString.replaceOccurrences(ofRegex: "([\\d\\)Prev])\\(", with: "$1*(")
+			mangledString.replaceOccurrences(ofRegex: "\\)([\\d\\(Prev])", with: ")*$1")
+			mangledString.replaceOccurrences(ofRegex: "Prev([\\dPrev]+)", with: "Prev*$1")
+			mangledString.replaceOccurrences(ofRegex: "([\\dL]+)Prev", with: "$1*Prev")
 			
 			return mangledString
 		}
