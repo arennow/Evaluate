@@ -36,29 +36,16 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		
 		self.infoButton.menuController = SlideMenuTableViewController(cellConfigurations:
 			[
-				.init(title: "Legal", action: {
-					[weak self]
-					_ in
-
+				.init(title: "Legal", action: { [weak self] in
 					if let this = self {
 						this.performSegue(withIdentifier: R.segue.calculatorViewController.localWebView, sender: this)
 					}
 				}),
-				.init(title: "Clear", action: {
-					[weak self]
-					_ in
-					
-					if let this = self {
-						this.clearScrollView()
-					}
+				.init(title: "Clear", action: { [weak self] in
+					self?.clearScrollView()
 				}),
-				.init(title: "Last", action: {
-					[weak self]
-					_ in
-					
-					if let this = self {
-						this.inputTextField.text = this.lastInput
-					}
+				.init(title: "Last", action: { [weak self] in
+					self?.inputTextField.text = self?.lastInput
 				})
 			]
 		)

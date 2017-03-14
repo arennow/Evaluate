@@ -11,7 +11,7 @@ import UIKit
 class SlideMenuTableViewController: UITableViewController {
 	struct CellConfiguration {
 		let title: String
-		let action: ((String) -> Void)?
+		let action: ((Void) -> Void)
 	}
 	
 	fileprivate static let cellIdentifier = "cell"
@@ -49,8 +49,8 @@ class SlideMenuTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let cellConfig = self.cellConfigurations.optionalValue(at: indexPath.row), let action = cellConfig.action {
-			action(cellConfig.title)
+		if let cellConfig = self.cellConfigurations.optionalValue(at: indexPath.row) {
+			cellConfig.action()
 		}
 	}
 }
