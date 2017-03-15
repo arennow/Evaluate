@@ -48,6 +48,16 @@ func +=<T>(lhs: inout [T], rhs: [T]) {
 	lhs = lhs+rhs
 }
 
+func +<K, V>(lhs: Dictionary<K, V>, rhs: Dictionary<K, V>) -> Dictionary<K, V> {
+	var outDict = lhs
+	
+	for (k, v) in rhs {
+		outDict[k] = v
+	}
+	
+	return outDict
+}
+
 extension Array {
 	func optionalValue(at index: Int) -> Element? {
 		if index < self.count {

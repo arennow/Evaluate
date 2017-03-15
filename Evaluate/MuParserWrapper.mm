@@ -11,6 +11,23 @@
 
 using namespace mu;
 
+static double eval_rand(void) {
+	double const scale = 100000;
+	return arc4random_uniform(scale)/(double)scale;
+}
+
+static double eval_fact(double input) {
+	double rounded = floor(input);
+	double outVal = rounded;
+	
+	while (rounded > 1) {
+		rounded -= 1;
+		outVal *= rounded;
+	}
+	
+	return outVal;
+}
+
 @implementation MuParserWrapper {
 	Parser _parser;
 	double _lastValue;
@@ -21,6 +38,9 @@ using namespace mu;
 	
 	if (self) {
 		_parser.DefineVar("Prev", &_lastValue);
+		_parser.DefineFun("rand", &eval_rand);
+		_parser.DefineFun("fact", &eval_fact);
+		_parser.DefineFun("round", &round);
 	}
 	
 	return self;

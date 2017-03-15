@@ -8,20 +8,10 @@
 
 import UIKit
 
-func +<K, V>(lhs: Dictionary<K, V>, rhs: Dictionary<K, V>) -> Dictionary<K, V> {
-	var outDict = lhs
-	
-	for (k, v) in rhs {
-		outDict[k] = v
-	}
-	
-	return outDict
-}
-
 class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet fileprivate var inputTextField: UITextField!
 	@IBOutlet fileprivate var outputTextScrollView: UIScrollView!
-	@IBOutlet var infoButton: SlideMenuButton!
+	@IBOutlet private var infoButton: SlideMenuButton!
 	let muParserWrapper = MuParserWrapper()
 	
 	var lastInput = String()
@@ -31,24 +21,29 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		
 		// Disable system keyboard
 		self.inputTextField.inputView = UIView(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
-		self.inputTextField.tintColor = UIColor.darkGray
+		self.inputTextField.tintColor = .darkGray
 		self.infoButton.backgroundColor = self.outputTextScrollView.backgroundColor
 		
-		self.infoButton.menuController = SlideMenuTableViewController(cellConfigurations:
-			[
-				.init(title: "Legal", action: { [weak self] in
-					if let this = self {
-						this.performSegue(withIdentifier: R.segue.calculatorViewController.localWebView, sender: this)
-					}
-				}),
-				.init(title: "Clear", action: { [weak self] in
-					self?.clearScrollView()
-				}),
-				.init(title: "Last", action: { [weak self] in
-					self?.inputTextField.text = self?.lastInput
-				})
-			]
-		)
+		let submenu: Array<SlideMenuTableViewController.CellConfiguration> = [
+			.init("rand", .action({ [weak self] in self?.insertTextAtCarat("rand()") })),
+			.init("factorial", .action({ [weak self] in self?.insertTextAtCarat("fact(Prev)") })),
+			.init("round", .action({ [weak self] in self?.insertTextAtCarat("round(Prev)") }))
+		]
+		
+		self.infoButton.rootConfiguration =	[
+			.init("Functions", .submenu(submenu)),
+			.init("Legal", .action({ [weak self] in
+				if let this = self {
+					this.performSegue(withIdentifier: R.segue.calculatorViewController.localWebView, sender: this)
+				}
+			})),
+			.init("Clear", .action({ [weak self] in
+				self?.clearScrollView()
+			})),
+			.init("Last", .action({ [weak self] in
+				self?.inputTextField.text = self?.lastInput
+			}))
+		]
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -156,17 +151,19 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 			}
 		}
 	}
+	
+	fileprivate func insertTextAtCarat(_ text: String) {
+		if let range = self.inputTextField.selectedTextRange {
+			self.inputTextField.replace(range, withText: text)
+		} else {
+			self.inputTextField.text! += text
+		}
+	}
 }
 
 extension CalculatorViewController {
 	@IBAction private func inputButtonPushed(_ sender: UIButton) {
-		let insertionText = sender.currentTitle!
-		
-		if let range = self.inputTextField.selectedTextRange {
-			self.inputTextField.replace(range, withText: insertionText)
-		} else {
-			self.inputTextField.text! += insertionText
-		}
+		self.insertTextAtCarat(sender.currentTitle!)
 	}
 	
 	@IBAction private func deleteButtonPushed() {

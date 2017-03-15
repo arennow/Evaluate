@@ -9,8 +9,8 @@
 import UIKit
 
 class SlideMenuButton : UIButton {
-	var menuController: SlideMenuTableViewController?
-	fileprivate var menuIsVisible = false
+	var rootConfiguration = Array<SlideMenuTableViewController.CellConfiguration>()
+	private var menuControllers = Array<SlideMenuTableViewController>()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -30,27 +30,49 @@ class SlideMenuButton : UIButton {
 		self.commonInitialization()
 	}
 	
-	fileprivate func commonInitialization() {
+	private func commonInitialization() {
 		self.addTarget(self, action: #selector(SlideMenuButton.touchDown), for: .touchDown)
 		self.addTarget(self, action: #selector(SlideMenuButton.touchUp), for: .touchUpInside)
 		self.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(SlideMenuButton.infoPan(_:))))
 	}
 	
-	@objc fileprivate func touchDown() {
-		self.appearMenu()
+	@objc private func touchDown() {
+		guard self.menuControllers.isEmpty else { return }
+		
+		let newMenu = SlideMenuTableViewController(cellConfigurations: self.rootConfiguration)
+		self.menuControllers.append(newMenu)
+		newMenu.presentAgainst(self)
 	}
 	
-	@objc fileprivate func touchUp() {
+	@objc private func touchUp() {
 		self.disappearMenu()
 	}
 	
-	@objc fileprivate func infoPan(_ gesture: UIPanGestureRecognizer) {
+	private func disappearMenu() {
+		func disappearLast(from arr: Array<SlideMenuTableViewController>, completion: @escaping (Void)->Void) {
+			if let last = arr.last {
+				last.disappear(atSpeed: .fast, completion: {
+					disappearLast(from: Array(arr.dropLast()), completion: completion)
+				})
+			} else {
+				completion()
+			}
+		}
+
+		let menusToDisappear = self.menuControllers
+		
+		disappearLast(from: menusToDisappear) {
+			self.menuControllers.removeAll()
+		}
+	}
+	
+	@objc private func infoPan(_ gesture: UIPanGestureRecognizer) {
 		switch gesture.state {
 		case .began:
-			self.appearMenu()
+			return
 			
 		case .ended:
-			if let mc = self.menuController, let selectedIP = mc.tableView.indexPathForSelectedRow {
+			if let mc = self.menuControllers.last, let selectedIP = mc.tableView.indexPathForSelectedRow {
 				mc.tableView.delegate?.tableView!(mc.tableView, didSelectRowAt: selectedIP)
 			}
 			
@@ -69,53 +91,45 @@ class SlideMenuButton : UIButton {
 			break
 		}
 		
-		let loc = gesture.location(in: self.menuController?.view)
+		let locInSuperview = gesture.location(in: self.superview)
 		
-		if let mc = self.menuController {
-			if mc.view.bounds.contains(loc) {
-				let indexPathUnderFinger = mc.tableView.indexPathForRow(at: loc)
-				mc.tableView.selectRow(at: indexPathUnderFinger, animated: false, scrollPosition: .top)
-			} else {
-				if let selected = mc.tableView.indexPathForSelectedRow {
-					mc.tableView.deselectRow(at: selected, animated: false)
+		let mc = self.menuControllers.reversed().first(where: { $0.view.frame.contains(locInSuperview) })
+		
+		if let mc = mc {
+			func submenuConfigs(for indexPath: IndexPath) -> Array<SlideMenuTableViewController.CellConfiguration>? {
+				if let config = mc.cellConfigurations.optionalValue(at: indexPath.row), case let .submenu(submenuConfigs) = config.behavior {
+					return submenuConfigs
+				} else {
+					return nil
 				}
 			}
-		}
-	}
-	
-	fileprivate func appearMenu() {
-		if let mc = self.menuController, !self.menuIsVisible {
-			mc.view.transform = CGAffineTransform(scaleX: 1, y: 1)
-			var frame = CGRect(origin: self.frame.origin, size: mc.preferredSize)
-			frame.origin.y -= frame.size.height
 			
-			mc.view.frame = frame
-			mc.view.center = mc.view.frame.pointInCorner(.bottom, .left)
-			mc.view.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-
-			self.superview?.addSubview(mc.view)
-
-			UIView.animate(withDuration: 0.333, animations: {
-				mc.view.transform = CGAffineTransform(scaleX: 1, y: 1)
-				mc.view.frame = frame
-			}) 
+			let locInMC = gesture.location(in: mc.view)
+			let indexPathUnderFinger = mc.tableView.indexPathForRow(at: locInMC)
 			
-			self.menuIsVisible = true
-		}
-	}
-	
-	fileprivate func disappearMenu() {
-		if let mc = self.menuController, self.menuIsVisible {
-			UIView.animate(withDuration: 0.333,
-				animations: {
-					mc.view.center = mc.view.frame.pointInCorner(.bottom, .left)
-					mc.view.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-				},
-				completion: { (_) -> Void in
-					mc.view.removeFromSuperview()
-					self.menuIsVisible = false
+			if let indexPathUnderFinger = indexPathUnderFinger {
+				mc.tableView.selectRow(at: indexPathUnderFinger, animated: false, scrollPosition: .none)
+				
+				if self.menuControllers.last == mc, let configs = submenuConfigs(for: indexPathUnderFinger) {
+					let newMenu = SlideMenuTableViewController(cellConfigurations: configs)
+					newMenu.originatingIndexPath = indexPathUnderFinger
+					self.menuControllers.append(newMenu)
+					newMenu.presentAgainst(indexPathUnderFinger, ofOtherMenuVC: mc)
 				}
-			)
+			}
+			
+			if let mcIndex = self.menuControllers.index(of: mc) {
+				for afterMC in self.menuControllers.dropFirst(mcIndex+1).reversed() {
+					afterMC.deselectAllRows()
+					
+					if afterMC.originatingIndexPath == indexPathUnderFinger {
+						continue
+					}
+					
+					afterMC.disappear(completion: nil)
+					self.menuControllers.removeLast()
+				}
+			}
 		}
 	}
 }
