@@ -10,22 +10,18 @@ import Foundation
 import RegexKitLite
 
 extension MuParserWrapper {
-	enum EvaluationResult {
-		case success(result: Double, mangledExpression: String)
-		case failure(error: Error)
+	struct EvaluationResult {
+		let result: Double
+		let mangledExpression: String
 	}
 	
-	func evaluate(_ expression: String) -> EvaluationResult {
+	func evaluate(_ expression: String) throws -> EvaluationResult {
 		let mangledExpression = MuParserWrapper.mangleInputString(expression)
 		
-		do {
-			var result: Double = 0
-			try self.evaluate(mangledExpression, result: &result)
-			
-			return .success(result: result, mangledExpression: mangledExpression)
-		} catch {
-			return .failure(error: error)
-		}
+		var result: Double = 0
+		try self.evaluate(mangledExpression, result: &result)
+		
+		return EvaluationResult(result: result, mangledExpression: mangledExpression)
 	}
 
 	fileprivate static func mangleInputString(_ str: String) -> String {

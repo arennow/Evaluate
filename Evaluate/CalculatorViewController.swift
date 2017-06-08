@@ -194,19 +194,19 @@ extension CalculatorViewController {
 			self.lastInput = typedExpression
 		}
 		
-		switch self.muParserWrapper.evaluate(self.lastInput) {
-		case .success(let result, let mangledExpression):
+		do {
+			let result = try self.muParserWrapper.evaluate(self.lastInput)
+			
 			self.inputTextField.text = nil
 			
-			addExpression(mangledExpression, andResultToDisplay: result)
+			self.addExpression(result.mangledExpression, andResultToDisplay: result.result)
 			
-		case .failure(let error):
+			self.scrollToBottomOfScrollView()
+		} catch {
 			let alertController = UIAlertController(title: "Syntax Error", message: error.localizedDescription, preferredStyle: .alert)
 			alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
 			
 			self.present(alertController, animated: true, completion: nil)
 		}
-		
-		self.scrollToBottomOfScrollView()
 	}
 }
