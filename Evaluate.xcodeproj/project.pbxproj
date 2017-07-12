@@ -13,7 +13,6 @@
 		9318E5AB1AB9CF5D008DB5B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9318E5A91AB9CF5D008DB5B6 /* Main.storyboard */; };
 		9318E5AD1AB9CF5D008DB5B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9318E5AC1AB9CF5D008DB5B6 /* Images.xcassets */; };
 		9318E5B01AB9CF5D008DB5B6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9318E5AE1AB9CF5D008DB5B6 /* LaunchScreen.xib */; };
-		9318E5C61AB9D0DF008DB5B6 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9318E5C51AB9D0DF008DB5B6 /* iAd.framework */; };
 		933DB27A1AC26CDA0002B93B /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB2791AC26CDA0002B93B /* Convenience.swift */; };
 		933DB2801AC274C70002B93B /* LocalWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DB27F1AC274C70002B93B /* LocalWebViewController.swift */; };
 		933DB2841AC277570002B93B /* Legal.html in Resources */ = {isa = PBXBuildFile; fileRef = 933DB2821AC277570002B93B /* Legal.html */; };
@@ -44,7 +43,6 @@
 		9318E5AA1AB9CF5D008DB5B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9318E5AC1AB9CF5D008DB5B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9318E5AF1AB9CF5D008DB5B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		9318E5C51AB9D0DF008DB5B6 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		933DB2791AC26CDA0002B93B /* Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		933DB27F1AC274C70002B93B /* LocalWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalWebViewController.swift; sourceTree = "<group>"; };
 		933DB2821AC277570002B93B /* Legal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Legal.html; sourceTree = "<group>"; };
@@ -63,7 +61,6 @@
 		93ABBB741AB9F0D700ED2389 /* muParserTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserTest.h; path = Evaluate/muParserTest.h; sourceTree = "<group>"; };
 		93ABBB751AB9F0D700ED2389 /* muParserToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserToken.h; path = Evaluate/muParserToken.h; sourceTree = "<group>"; };
 		93ABBB761AB9F0D700ED2389 /* muParserTokenReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = muParserTokenReader.h; path = Evaluate/muParserTokenReader.h; sourceTree = "<group>"; };
-		93ABBB771AB9F0EE00ED2389 /* Evaluate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Evaluate; sourceTree = SOURCE_ROOT; };
 		93ABBB781AB9F0EE00ED2389 /* muParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParser.cpp; path = Evaluate/muParser.cpp; sourceTree = "<group>"; };
 		93ABBB791AB9F0EE00ED2389 /* muParserBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserBase.cpp; path = Evaluate/muParserBase.cpp; sourceTree = "<group>"; };
 		93ABBB7A1AB9F0EE00ED2389 /* muParserBytecode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = muParserBytecode.cpp; path = Evaluate/muParserBytecode.cpp; sourceTree = "<group>"; };
@@ -88,7 +85,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				93ABBB941ABA185400ED2389 /* libicucore.dylib in Frameworks */,
-				9318E5C61AB9D0DF008DB5B6 /* iAd.framework in Frameworks */,
 				2DD6755D5EFECFAB5021C26B /* Pods_Evaluate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,7 +126,6 @@
 				93ABBB8A1AB9F17800ED2389 /* MuParserWrapper.h */,
 				93ABBB8B1AB9F17800ED2389 /* MuParserWrapper.mm */,
 				93ABBB8D1ABA0EB900ED2389 /* MuParserWrapper.swift */,
-				93ABBB771AB9F0EE00ED2389 /* Evaluate */,
 				933DB2851AC2775D0002B93B /* Resources */,
 				9318E5A31AB9CF5D008DB5B6 /* Supporting Files */,
 			);
@@ -148,7 +143,6 @@
 		9318E5C71AB9D0F3008DB5B6 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				9318E5C51AB9D0DF008DB5B6 /* iAd.framework */,
 				93ABBB931ABA185400ED2389 /* libicucore.dylib */,
 				93ABBB681AB9F0C300ED2389 /* MuParser */,
 				933E14611ACBB4CF00998EFD /* R.generated.swift */,
