@@ -26,8 +26,8 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 		
 		let submenu: Array<SlideMenuTableViewController.CellConfiguration> = [
 			.init("rand", .action({ [weak self] in self?.insertTextAtCarat("rand()") })),
-			.init("factorial", .action({ [weak self] in self?.insertTextAtCarat("fact(Prev)") })),
-			.init("round", .action({ [weak self] in self?.insertTextAtCarat("round(Prev)") }))
+			.init("factorial", .action({ [weak self] in self?.insertTextAtCarat("fact(P)") })),
+			.init("round", .action({ [weak self] in self?.insertTextAtCarat("round(P)") }))
 		]
 		
 		self.infoButton.rootConfiguration =	[
@@ -164,6 +164,10 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 extension CalculatorViewController {
 	@IBAction private func inputButtonPushed(_ sender: UIButton) {
 		self.insertTextAtCarat(sender.currentTitle!)
+	}
+	
+	@IBAction private func prevButtonPushed() {
+		self.insertTextAtCarat("P")
 	}
 	
 	@IBAction private func deleteButtonPushed() {

@@ -30,12 +30,12 @@ extension MuParserWrapper {
 			
 			mangledString.replaceOccurrences(of: "**", with: "^", options: .literal, range: NSRange(location: 0, length: mangledString.length))
 			
-			mangledString.replaceOccurrences(ofRegex: "^([\\-\\+\\/\\*^])", with: "Prev$1")
+			mangledString.replaceOccurrences(ofRegex: "^([\\-\\+\\/\\*^])", with: "P$1")
 			
-			mangledString.replaceOccurrences(ofRegex: "([\\d\\)Prev])\\(", with: "$1*(")
-			mangledString.replaceOccurrences(ofRegex: "\\)([\\d\\(Prev])", with: ")*$1")
-			mangledString.replaceOccurrences(ofRegex: "Prev([\\dPrev]+)", with: "Prev*$1")
-			mangledString.replaceOccurrences(ofRegex: "([\\dL]+)Prev", with: "$1*Prev")
+			mangledString.replaceOccurrences(ofRegex: "([\\d\\)P])\\(", with: "$1*(")
+			mangledString.replaceOccurrences(ofRegex: "\\)([\\d\\(P])", with: ")*$1")
+			mangledString.replaceOccurrences(ofRegex: "P([\\dP]+)", with: "P*$1")
+			mangledString.replaceOccurrences(ofRegex: "([\\dL]+)P", with: "$1*P")
 			
 			return mangledString
 		}

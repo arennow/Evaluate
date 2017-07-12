@@ -37,7 +37,7 @@ static double eval_fact(double input) {
 	self = [super init];
 	
 	if (self) {
-		_parser.DefineVar("Prev", &_lastValue);
+		_parser.DefineVar("P", &_lastValue);
 		_parser.DefineFun("rand", &eval_rand);
 		_parser.DefineFun("fact", &eval_fact);
 		_parser.DefineFun("round", &round);
