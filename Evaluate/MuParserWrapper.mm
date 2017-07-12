@@ -20,7 +20,7 @@ static double eval_fact(double input) {
 	double rounded = floor(input);
 	double outVal = rounded;
 	
-	while (rounded > 1 && !isinf(rounded)) {
+	while (rounded > 1 && !isinf(outVal)) {
 		rounded -= 1;
 		outVal *= rounded;
 	}
