@@ -49,7 +49,7 @@ class SlideMenuButton : UIButton {
 	}
 	
 	private func disappearMenu() {
-		func disappearLast(from arr: Array<SlideMenuTableViewController>, completion: @escaping (Void)->Void) {
+		func disappearLast(from arr: Array<SlideMenuTableViewController>, completion: @escaping ()->Void) {
 			if let last = arr.last {
 				last.disappear(atSpeed: .fast, completion: {
 					disappearLast(from: Array(arr.dropLast()), completion: completion)

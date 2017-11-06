@@ -28,6 +28,11 @@ static double eval_fact(double input) {
 	return outVal;
 }
 
+// I'm not sure why this is necessary. Perhaps MuParser needs a static function?
+static double eval_round(double input) {
+	return round(input);
+}
+
 @implementation MuParserWrapper {
 	Parser _parser;
 	double _lastValue;
@@ -40,7 +45,7 @@ static double eval_fact(double input) {
 		_parser.DefineVar("P", &_lastValue);
 		_parser.DefineFun("rand", &eval_rand);
 		_parser.DefineFun("fact", &eval_fact);
-		_parser.DefineFun("round", &round);
+		_parser.DefineFun("round", &eval_round);
 	}
 	
 	return self;

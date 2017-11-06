@@ -95,17 +95,17 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 			self.outputTextScrollView.contentSize.height = previousContentSize.height+additionSize.height
 		}
 		
-		let basicAttributes: [String : AnyObject] = [
-			NSForegroundColorAttributeName : UIColor.white,
-			NSFontAttributeName : self.inputTextField.font!
+		let basicAttributes: [NSAttributedStringKey : AnyObject] = [
+			.foregroundColor : UIColor.white,
+			.font : self.inputTextField.font!
 		]
 		
-		let leftAlignmentAttributes: [String : AnyObject] = [
-			NSParagraphStyleAttributeName : {let x = NSMutableParagraphStyle();x.alignment = .left; return x}()
+		let leftAlignmentAttributes: [NSAttributedStringKey : AnyObject] = [
+			.paragraphStyle : {let x = NSMutableParagraphStyle();x.alignment = .left; return x}()
 		]
 		
-		let rightAlignmentAttributes: [String: AnyObject] = [
-			NSParagraphStyleAttributeName : {let x = NSMutableParagraphStyle();x.alignment = .right; return x}()
+		let rightAlignmentAttributes: [NSAttributedStringKey: AnyObject] = [
+			.paragraphStyle : {let x = NSMutableParagraphStyle();x.alignment = .right; return x}()
 		]
 		
 		let expressionAttributedString = NSAttributedString(string: expression, attributes: basicAttributes + leftAlignmentAttributes)
@@ -181,7 +181,7 @@ extension CalculatorViewController {
 					self.inputTextField.replace(selectedRange, withText: "")
 				}
 			} else {
-				currentString.remove(at: currentString.characters.index(before: currentString.endIndex))
+				currentString.remove(at: currentString.index(before: currentString.endIndex))
 				
 				// This shouldn't be necessary. It's probably a bug that it is, but whatever
 				DispatchQueue.main.async {

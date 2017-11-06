@@ -11,7 +11,7 @@ import UIKit
 class SlideMenuTableViewController: UITableViewController {
 	struct CellConfiguration {
 		enum Behavior {
-			case action((Void) -> Void)
+			case action(() -> Void)
 			case submenu(Array<CellConfiguration>)
 		}
 		
@@ -152,7 +152,7 @@ extension SlideMenuTableViewController {
 		self.presentationStyle = .otherMenu
 	}
 	
-	func disappear(atSpeed speed: AnimationSpeed = .normal, completion: ((Void)->Void)?) {
+	func disappear(atSpeed speed: AnimationSpeed = .normal, completion: (()->Void)?) {
 		guard let presentationStyle = self.presentationStyle else { return }
 		
 		let verticalSide: CGRect.VerticalSide
