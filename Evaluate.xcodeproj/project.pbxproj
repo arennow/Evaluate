@@ -514,7 +514,7 @@
 				INFOPLIST_FILE = Evaluate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lithiumcube.Evaluate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lithiumcube.StringCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Evaluate/Evaluate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -533,7 +533,7 @@
 				INFOPLIST_FILE = Evaluate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lithiumcube.Evaluate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lithiumcube.StringCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Evaluate/Evaluate-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
