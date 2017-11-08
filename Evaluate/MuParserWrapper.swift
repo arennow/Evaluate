@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import RegexKitLite
+import Regex
 
 extension MuParserWrapper {
 	struct EvaluationResult {
@@ -25,26 +25,25 @@ extension MuParserWrapper {
 	}
 
 	fileprivate static func mangleInputString(_ str: String) -> String {
-		func innerMangler(_ str: NSMutableString) -> NSMutableString {
-			let mangledString = NSMutableString(string: str.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
+		func innerMangler(_ str: String) -> String {
+			var outStr = str
 			
-			mangledString.replaceOccurrences(of: "**", with: "^", options: .literal, range: NSRange(location: 0, length: mangledString.length))
+			outStr = outStr.trimmingCharacters(in: .whitespacesAndNewlines)
 			
-			mangledString.replaceOccurrences(ofRegex: "^([\\-\\+\\/\\*^])", with: "P$1")
+			outStr = outStr.replacingOccurrences(of: "**", with: "^")
 			
-			mangledString.replaceOccurrences(ofRegex: "([\\d\\)P])\\(", with: "$1*(")
-			mangledString.replaceOccurrences(ofRegex: "\\)([\\d\\(P])", with: ")*$1")
-			mangledString.replaceOccurrences(ofRegex: "P([\\dP]+)", with: "P*$1")
-			mangledString.replaceOccurrences(ofRegex: "([\\dL]+)P", with: "$1*P")
+			outStr = try! Regex(pattern: "^([\\-\\+\\/\\*^])").replaceAll(in: outStr, with: "P$1")
+			outStr = try! Regex(pattern: "([\\d\\)P])\\(").replaceAll(in: outStr, with: "$1*(")
+			outStr = try! Regex(pattern: "\\)([\\d\\(P])").replaceAll(in: outStr, with: ")*$1")
+			outStr = try! Regex(pattern: "P([\\dP]+)").replaceAll(in: outStr, with: "P*$1")
+			outStr = try! Regex(pattern: "([\\dP]+)P").replaceAll(in: outStr, with: "$1*P")
 			
-			return mangledString
+			return outStr
 		}
 		
-		let mutStr = NSMutableString(string: str)
-		
-		var stringToMangle = mutStr
-		var first: NSMutableString?
-		var second: NSMutableString?
+		var stringToMangle = str
+		var first: String?
+		var second: String?
 		
 		repeat {
 			first = innerMangler(stringToMangle)
