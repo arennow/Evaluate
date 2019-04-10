@@ -226,7 +226,6 @@
 				9318E59D1AB9CF5D008DB5B6 /* Frameworks */,
 				9318E59E1AB9CF5D008DB5B6 /* Resources */,
 				EB3036B5C7491B6C8B873638 /* [CP] Embed Pods Frameworks */,
-				877CC59549FCA3AB0D1254DA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,6 +259,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -288,34 +288,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		877CC59549FCA3AB0D1254DA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Evaluate/Pods-Evaluate-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		933E14601ACBB32A00998EFD /* R.Swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
 			);
 			name = R.Swift;
 			outputPaths = (
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		EB3036B5C7491B6C8B873638 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -323,7 +310,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Evaluate/Pods-Evaluate-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Evaluate/Pods-Evaluate-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CrossroadRegex/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 			);
@@ -334,7 +321,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Evaluate/Pods-Evaluate-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Evaluate/Pods-Evaluate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FA9912E506BE228663A94660 /* [CP] Check Pods Manifest.lock */ = {

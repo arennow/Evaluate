@@ -1,12 +1,17 @@
 PODS:
   - CrossroadRegex (1.1.0)
-  - R.swift (4.0.0):
-    - R.swift.Library (~> 4.0.0)
-  - R.swift.Library (4.0.0)
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
 
 DEPENDENCIES:
   - CrossroadRegex (from `https://github.com/arennow/Regex.git`)
   - R.swift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - R.swift
+    - R.swift.Library
 
 EXTERNAL SOURCES:
   CrossroadRegex:
@@ -19,9 +24,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CrossroadRegex: 1160812c3b576ad6d565bc6d313af82c5ef2e30f
-  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
-  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
 
-PODFILE CHECKSUM: 71027a5ddcbdcd86e1409fbac28fc3c1c7f0a008
+PODFILE CHECKSUM: cb2066d7c9004edd7cc29d3cc3758de9bb4227e8
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.6.1
