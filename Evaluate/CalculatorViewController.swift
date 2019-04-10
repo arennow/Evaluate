@@ -96,16 +96,16 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 			self.outputTextScrollView.contentSize.height = previousContentSize.height+additionSize.height
 		}
 		
-		let basicAttributes: [NSAttributedStringKey : AnyObject] = [
+		let basicAttributes: [NSAttributedString.Key : AnyObject] = [
 			.foregroundColor : UIColor.white,
 			.font : self.inputTextField.font!
 		]
 		
-		let leftAlignmentAttributes: [NSAttributedStringKey : AnyObject] = [
+		let leftAlignmentAttributes: [NSAttributedString.Key : AnyObject] = [
 			.paragraphStyle : {let x = NSMutableParagraphStyle();x.alignment = .left; return x}()
 		]
 		
-		let rightAlignmentAttributes: [NSAttributedStringKey: AnyObject] = [
+		let rightAlignmentAttributes: [NSAttributedString.Key: AnyObject] = [
 			.paragraphStyle : {let x = NSMutableParagraphStyle();x.alignment = .right; return x}()
 		]
 		
@@ -147,7 +147,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == R.segue.calculatorViewController.localWebView.identifier {
-			if let navCon = segue.destination as? UINavigationController, let webVC = navCon.childViewControllers.first as? LocalWebViewController {
+			if let navCon = segue.destination as? UINavigationController, let webVC = navCon.children.first as? LocalWebViewController {
 				webVC.urlToDisplay = Bundle.main.url(forResource: "Legal", withExtension: "html")
 			}
 		}

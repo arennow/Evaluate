@@ -31,7 +31,7 @@ extension CGRect {
 }
 
 extension UIView {
-	class func animate(duration: TimeInterval, options: UIViewAnimationOptions, animations: @escaping (() -> ())) {
+	class func animate(duration: TimeInterval, options: UIView.AnimationOptions, animations: @escaping (() -> ())) {
 		return self.animate(withDuration: duration, delay: 0, options: options, animations: animations, completion: nil)
 	}
 }

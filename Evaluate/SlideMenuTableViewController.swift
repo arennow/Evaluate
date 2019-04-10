@@ -117,17 +117,18 @@ extension SlideMenuTableViewController {
 	func presentAgainst(_ indexPath: IndexPath, ofOtherMenuVC otherMenuVC: SlideMenuTableViewController) {
 		guard !self.isVisible else { return }
 		guard otherMenuVC.isVisible else { return }
+		guard let view = self.view else { return }
 		
 		self.presentationStyle = .otherMenu
 		
 		self.view.translatesAutoresizingMaskIntoConstraints = false
-		otherMenuVC.view.superview?.addSubview(self.view)
+		otherMenuVC.view.superview?.addSubview(view)
 		
 		let presentingCell = otherMenuVC.tableView.cellForRow(at: indexPath)!
 		
 		let submenuSize = self.preferredSize
 		
-		let views: Dictionary<String, UIView> = ["other": otherMenuVC.view, "submenu": self.view]
+		let views: Dictionary<String, UIView> = ["other": otherMenuVC.view, "submenu": view]
 		let metrics: Dictionary<String, NSNumber> = ["width": submenuSize.width as NSNumber, "height": submenuSize.height as NSNumber]
 		
 		var constraints = Array<NSLayoutConstraint>()
@@ -139,7 +140,7 @@ extension SlideMenuTableViewController {
 		                                                              options: [],
 		                                                              metrics: metrics,
 		                                                              views: views))
-		constraints.append(NSLayoutConstraint(item: self.view,
+		constraints.append(NSLayoutConstraint(item: view,
 		                                      attribute: .top,
 		                                      relatedBy: .equal,
 		                                      toItem: presentingCell,

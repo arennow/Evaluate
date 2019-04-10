@@ -88,12 +88,15 @@ class SlideMenuButton : UIButton {
 			disappearMenu()
 			return
 			
-		case .possible:
-			print("\(#function): \(gesture.state.rawValue) happened. Odd.")
-			return
-			
 		case .changed:
 			break
+			
+		case .possible:
+			fallthrough
+		@unknown default:
+			print("\(#function): \(gesture.state.rawValue) happened. Odd.")
+			return
+
 		}
 		
 		let locInSuperview = gesture.location(in: self.superview)
@@ -126,7 +129,7 @@ class SlideMenuButton : UIButton {
 				}
 			}
 			
-			if let mcIndex = self.menuControllers.index(of: mc) {
+			if let mcIndex = self.menuControllers.firstIndex(of: mc) {
 				for afterMC in self.menuControllers.dropFirst(mcIndex+1).reversed() {
 					afterMC.deselectAllRows()
 					
