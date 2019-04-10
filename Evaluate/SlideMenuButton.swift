@@ -66,9 +66,13 @@ class SlideMenuButton : UIButton {
 		}
 	}
 	
+	private var feedbackGenerator: UISelectionFeedbackGenerator?
+	
 	@objc private func infoPan(_ gesture: UIPanGestureRecognizer) {
 		switch gesture.state {
 		case .began:
+			self.feedbackGenerator = UISelectionFeedbackGenerator()
+			self.feedbackGenerator?.prepare()
 			return
 			
 		case .ended:
@@ -80,7 +84,8 @@ class SlideMenuButton : UIButton {
 		case .cancelled:
 			fallthrough
 		case .failed:
-			disappearMenu();
+			self.feedbackGenerator = nil
+			disappearMenu()
 			return
 			
 		case .possible:
@@ -108,7 +113,10 @@ class SlideMenuButton : UIButton {
 			let indexPathUnderFinger = mc.tableView.indexPathForRow(at: locInMC)
 			
 			if let indexPathUnderFinger = indexPathUnderFinger {
-				mc.tableView.selectRow(at: indexPathUnderFinger, animated: false, scrollPosition: .none)
+				if mc.tableView.indexPathForSelectedRow != indexPathUnderFinger {
+					mc.tableView.selectRow(at: indexPathUnderFinger, animated: false, scrollPosition: .none)
+					self.feedbackGenerator?.selectionChanged()
+				}
 				
 				if self.menuControllers.last == mc, let configs = submenuConfigs(for: indexPathUnderFinger) {
 					let newMenu = SlideMenuTableViewController(cellConfigurations: configs)

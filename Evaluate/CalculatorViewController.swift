@@ -12,7 +12,8 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet fileprivate var inputTextField: UITextField!
 	@IBOutlet fileprivate var outputTextScrollView: UIScrollView!
 	@IBOutlet private var infoButton: SlideMenuButton!
-	let muParserWrapper = MuParserWrapper()
+	
+	fileprivate let muParserWrapper = MuParserWrapper()
 	
 	var lastInput = String()
 	
@@ -202,11 +203,11 @@ extension CalculatorViewController {
 			let result = try self.muParserWrapper.evaluate(self.lastInput)
 			
 			self.inputTextField.text = nil
-			
 			self.addExpression(result.mangledExpression, andResultToDisplay: result.result)
-			
 			self.scrollToBottomOfScrollView()
 		} catch {
+			UINotificationFeedbackGenerator().notificationOccurred(.error)
+			
 			let alertController = UIAlertController(title: "Syntax Error", message: error.localizedDescription, preferredStyle: .alert)
 			alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
 			
